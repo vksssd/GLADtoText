@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../subwords/grammar_units.h"
-#include "../subwords/phonetic.h"
+#include "../../subwords/grammar_units.h"
+#include "../../subwords/phonetic.h"
 
 int main(){
     GrammarUnitInducer inducer(3,6,2);

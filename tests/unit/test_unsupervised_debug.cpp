@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../model/backbone.h"
-#include "../heads/semantic.h"
+#include "../../model/backbone.h"
+#include "../../heads/semantic.h"
 
 int main() {
     int vocab = 100;

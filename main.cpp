@@ -523,11 +523,10 @@ void trainSupervised(const Args& args) {
     out.close();
     std::cout << "Model saved to " << args.output << ".bin\n";
     
-    // Cleanup
-    if (!usePretrained) {
-        delete emb;
-        delete att;
-    }
+    // Cleanup - FIXED: Always delete allocated memory
+    delete emb;
+    delete att;
+    // sentEnc destructor handles its own cleanup
 }
 
 int main(int argc, char** argv) {

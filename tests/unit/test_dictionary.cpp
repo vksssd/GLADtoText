@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../core/dictionary.h"
+#include "../../core/dictionary.h"
 
 int main() {
     Dictionary dict;

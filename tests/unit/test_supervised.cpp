@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../heads/classify.h"
+#include "../../heads/classify.h"
 
 int main() {
     int vocab = 50;

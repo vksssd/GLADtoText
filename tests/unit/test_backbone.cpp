@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../model/backbone.h"
+#include "../../model/backbone.h"
 
 int main() {
     int vocab = 50;

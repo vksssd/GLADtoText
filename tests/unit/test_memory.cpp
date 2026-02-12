@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../model/memory.h"
+#include "../../model/memory.h"
 
 int main() {
     int dim = 4;

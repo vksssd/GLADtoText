@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
-#include "../subwords/grammar_units.h"
-#include "../subwords/phonetic.h"
+#include "../../subwords/grammar_units.h"
+#include "../../subwords/phonetic.h"
 
 int main() {
     // MinLen 3, MaxLen 6, MinFreq 2

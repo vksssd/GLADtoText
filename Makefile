@@ -11,9 +11,12 @@ TINY_TRAIN_BIN = gladtotext-tiny
 SIZE_CALC = model-size-calculator
 
 # Test binaries
-TEST_BINS = tests/t1 tests/t2 tests/t3 tests/t4 tests/t5
+UNIT_TEST_BINS = tests/unit/t1 tests/unit/t2 tests/unit/t3 tests/unit/t4 tests/unit/t5
+INTEGRATION_TESTS = tests/integration/test_full_pipeline.sh \
+                    tests/integration/test_sentence_encoding.sh \
+                    tests/integration/test_transfer_learning.sh
 
-.PHONY: all clean test install compact tiny tools
+.PHONY: all clean test test-unit test-integration install compact tiny tools examples
 
 all: $(TRAIN_BIN) $(INFER_BIN)
 
@@ -42,29 +45,43 @@ $(SIZE_CALC): model_size_calculator.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
 # Tests
-tests/t1: tests/test_backbone.cpp
+tests/unit/t1: tests/unit/test_backbone.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
-tests/t2: tests/test_dictionary.cpp
+tests/unit/t2: tests/unit/test_dictionary.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
-tests/t3: tests/test_unsupervised.cpp
+tests/unit/t3: tests/unit/test_unsupervised.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
-tests/t4: tests/test_supervised.cpp
+tests/unit/t4: tests/unit/test_supervised.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
-tests/t5: tests/test_memory.cpp
+tests/unit/t5: tests/unit/test_memory.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
-test: $(TEST_BINS)
-	@echo "Running tests..."
-	@./tests/t1 && ./tests/t2 && ./tests/t3 && ./tests/t4 && ./tests/t5
-	@echo "All tests passed!"
+test-unit: $(UNIT_TEST_BINS)
+	@echo "Running unit tests..."
+	@./tests/unit/t1 && ./tests/unit/t2 && ./tests/unit/t3 && ./tests/unit/t4 && ./tests/unit/t5
+	@echo "✓ All unit tests passed!"
+
+test-integration: all
+	@echo "Running integration tests..."
+	@cd tests/integration && ./test_full_pipeline.sh
+	@cd tests/integration && ./test_sentence_encoding.sh
+	@cd tests/integration && ./test_transfer_learning.sh
+	@echo "✓ All integration tests passed!"
+
+test: test-unit test-integration
+	@echo ""
+	@echo "=========================================="
+	@echo "✓ ALL TESTS PASSED!"
+	@echo "=========================================="
 
 clean:
-	rm -f $(TRAIN_BIN) $(INFER_BIN) $(COMPACT_TRAIN_BIN) $(COMPACT_INFER_BIN) $(TINY_TRAIN_BIN) $(SIZE_CALC) $(TEST_BINS)
+	rm -f $(TRAIN_BIN) $(INFER_BIN) $(COMPACT_TRAIN_BIN) $(COMPACT_INFER_BIN) $(TINY_TRAIN_BIN) $(SIZE_CALC) $(UNIT_TEST_BINS)
 	rm -f *.bin *.o *.config
+	rm -f tests/integration/*.txt tests/integration/*.bin
 
 install: all compact
 	@echo "Installing to /usr/local/bin (requires sudo)"
@@ -73,36 +90,26 @@ install: all compact
 	sudo cp $(COMPACT_TRAIN_BIN) /usr/local/bin/
 	sudo cp $(COMPACT_INFER_BIN) /usr/local/bin/
 
-# Example targets
-example-cbow:
-	@echo "Training CBOW model..."
-	./$(TRAIN_BIN) cbow -input sample_train.txt -output example_model -dim 50 -epoch 5 -minCount 1
+# Examples
+examples:
+	@echo "Available examples:"
+	@echo "  make example-quickstart          - Quick demo"
+	@echo "  make example-intent              - Intent classification comparison"
+	@echo "  make example-transfer            - Transfer learning"
+	@echo "  make example-compact             - Compact models"
+	@echo "  make example-sentence            - Sentence encoding"
 
-example-supervised:
-	@echo "Training supervised model..."
-	./$(TRAIN_BIN) supervised -input sample_supervised.txt -output example_classifier -dim 30 -epoch 10 -minCount 1
+example-quickstart:
+	@cd examples && ./quickstart.sh
 
-example-vectors:
-	@echo "Getting word vectors..."
-	echo "dog cat fox" | ./$(INFER_BIN) print-word-vector example_model.bin
+example-intent:
+	@cd examples && ./example_intent_classification.sh
 
-example-predict:
-	@echo "Predicting labels..."
-	echo "this is a great movie" | ./$(INFER_BIN) predict example_classifier.bin 2
+example-transfer:
+	@cd examples && ./example_transfer_learning.sh
 
-
-# Compact model examples
 example-compact:
-	@echo "Training compact intent classifier..."
-	@cat > compact_demo.txt << 'EOF' && \
-	__label__book_flight book a flight to paris; \
-	__label__book_hotel find a hotel in rome; \
-	__label__cancel cancel my booking; \
-	__label__status check my reservation; \
-	EOF
-	./$(COMPACT_TRAIN_BIN) compact_demo.txt compact_demo.bin 20 50 0.2
-	@echo ""
-	@echo "Testing predictions..."
-	@echo "book flight to london" | ./$(COMPACT_INFER_BIN) compact_demo.bin 1
-	@echo ""
-	@ls -lh compact_demo.bin
+	@cd examples && ./demo_compact.sh
+
+example-sentence:
+	@cd examples && ./demo_sentence_encoding.sh

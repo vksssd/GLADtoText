@@ -12,7 +12,8 @@ public:
     explicit PositionEncoder(int d) : dim(d) {}
     
     // Sinusoidal position encoding (Transformer-style)
-    Vector encode(int position, int max_len = 100) const {
+    // max_len parameter reserved for future dynamic scaling
+    Vector encode(int position, int /* max_len */ = 100) const {
         Vector pos(dim);
         for (int i = 0; i < dim; i++) {
             float angle = position / std::pow(10000.0f, 2.0f * i / dim);

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../subwords/char_ngram.h"
+#include "../../subwords/char_ngram.h"
 
 int main() {
     Config cfg;
