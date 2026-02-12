@@ -1,154 +1,271 @@
 # GLADtoTEXT
 
-> FastText-inspired text embeddings and classification with enhanced features and tiny memory footprint
+> FastText-inspired text embeddings with sentence-level encoding, transfer learning, and configurable layers
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
-[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
 
-GLADtoTEXT is a high-performance text embedding and classification system that outperforms FastText while using less memory. It provides three model types optimized for different use cases, from ultra-compact (4KB) to feature-rich (126KB) models.
+GLADtoTEXT is a high-performance text embedding and classification system with configurable layers, allowing you to activate/deactivate features based on your needs.
 
-## ✨ Features
+## ✨ Key Features
 
-- **FastText-compatible** character n-grams with FNV-1a hashing
-- **Tiny memory footprint** - 126KB models with ALL features (93x smaller than standard)
-- **Enhanced features** - Grammar units, phonetic encoding, vector attention
-- **Sentence-level encoding** - Optional self-attention for word order and context (triggerable)
-- **Transfer learning** - Pretrain on large corpus, fine-tune on small labeled data
-- **Three model types** - Compact (4KB), Tiny (126KB), Standard (11MB)
-- **Production-ready** - Fast inference (< 2ms), low memory (< 1MB)
-- **No dependencies** - Pure C++17, stdlib only
+- **Configurable Layers** - Enable/disable features via config files
+- **Three Approaches** - Text-level, word-level, sentence-level classification
+- **Sentence Encoding** - Optional self-attention for word order awareness
+- **Transfer Learning** - Pretrain on large corpus, fine-tune on labeled data
+- **Multiple Model Sizes** - From 4KB (compact) to full-featured models
+- **Rich Subword Features** - Char n-grams, grammar units, phonetic encoding
+- **Memory Efficient** - Sparse matrices, quantization, pruning
+- **No Dependencies** - Pure C++17, stdlib only
 
 ## 🚀 Quick Start
 
 ### Build
 
 ```bash
-make all      # Standard models
-make compact  # Compact models (4-20KB)
-make tiny     # Tiny models (80-200KB) - Recommended
-make test     # Run all tests
+make all          # Standard models
+make compact      # Compact models (4-20KB)
+make tiny         # Tiny models with all features
+make tools        # Model size calculator
+make test         # Run all tests
 ```
 
 ### Train
 
 ```bash
-# Tiny model with ALL features (recommended)
-./gladtotext-tiny intents.txt model.bin -dim 30 -epoch 50 -lr 0.1
+# Text-level (bag-of-words)
+./gladtotext supervised -input train.txt -output model -dim 30 -epoch 10
 
-# Compact model (minimal size)
-./gladtotext-compact intents.txt model.bin 20 50 0.2
+# Word-level (with subword features)
+./gladtotext supervised -input train.txt -output model \
+  -dim 50 -epoch 15 -minn 3 -maxn 6
 
-# Standard model (research)
-./gladtotext supervised -input labels.txt -output model -dim 100 -epoch 10
+# Sentence-level (with attention)
+./gladtotext supervised -input train.txt -output model \
+  -dim 50 -epoch 20 -minn 3 -maxn 6 -sentence
 ```
 
 ### Predict
 
 ```bash
-echo "book a flight to paris" | ./gladtotext-compact-infer model.bin 1
+echo "your text here" | ./gladtotext-infer predict model.bin 1
 ```
 
-## 📊 Model Comparison
+## 📊 Three Approaches Comparison
 
-| Model Type | Size | Features | Use Case |
-|------------|------|----------|----------|
-| **Compact** | 4-20 KB | Word-level only | Ultra-constrained |
-| **Tiny** ⭐ | 80-200 KB | ALL features | **Production** |
-| **Standard** | 381 MB - 7.6 GB | ALL features (dense) | Research |
+| Feature | Text-Level | Word-Level | Sentence-Level |
+|---------|------------|------------|----------------|
+| Speed | ⚡⚡⚡ Fastest | ⚡⚡ Fast | ⚡ Slower |
+| Size | 📦 Smallest | 📦📦 Medium | 📦📦📦 Larger |
+| Word Order | ❌ No | ❌ No | ✅ Yes |
+| Typo Handling | ❌ Poor | ✅ Good | ✅ Good |
+| OOV Handling | ❌ Poor | ✅ Good | ✅ Good |
+| Accuracy (Simple) | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
+| Accuracy (Complex) | ⭐ | ⭐⭐ | ⭐⭐⭐⭐ |
 
-### vs FastText
+## 🎯 When to Use Each
 
-| Metric | FastText | GLADtoTEXT Tiny | Winner |
-|--------|----------|-----------------|--------|
-| Size | 200 KB | 126 KB | **Tiny** ✓ |
-| Char n-grams | ✓ | ✓ | Tie |
-| Grammar units | ✗ | ✓ | **Tiny** ✓ |
-| Phonetic | ✗ | ✓ | **Tiny** ✓ |
-| Attention | ✗ | ✓ | **Tiny** ✓ |
-| Inference | 5-10ms | 1-2ms | **Tiny** ✓ |
-| Memory | 10 MB | < 1 MB | **Tiny** ✓ |
+### Text-Level (Bag-of-Words)
+```bash
+./gladtotext supervised -input train.txt -output model -dim 30 -epoch 10
+```
+✅ Simple keyword matching  
+✅ Speed is critical  
+✅ Limited training data  
+❌ Word order doesn't matter
 
-**Result:** Smaller size, more features, faster inference!
+### Word-Level (Subword Features)
+```bash
+./gladtotext supervised -input train.txt -output model \
+  -dim 50 -epoch 15 -minn 3 -maxn 6
+```
+✅ Need typo tolerance  
+✅ OOV words common  
+✅ User input has errors  
+❌ Word order doesn't matter much
+
+### Sentence-Level (Attention)
+```bash
+./gladtotext supervised -input train.txt -output model \
+  -dim 50 -epoch 20 -minn 3 -maxn 6 -sentence
+```
+✅ Word order affects meaning  
+✅ Complex compositional intents  
+✅ Multi-word expressions  
+✅ Negation and modifiers
+
+## 🔧 Configurable Layers
+
+GLADtoTEXT allows you to control which layers are active:
+
+### Available Layers
+
+1. **Word Embeddings** - Base word vectors
+2. **Character N-grams** - Subword features for OOV handling
+3. **Grammar Units** - Syntactic features
+4. **Phonetic Encoding** - Sound-based features
+5. **Vector Attention** - Feature weighting
+6. **Sentence Encoder** - Position encoding + self-attention
+
+### Using Config Files
+
+```cpp
+// Create config
+ModelConfig cfg;
+cfg.use_word_embeddings = true;
+cfg.use_char_ngrams = true;
+cfg.use_grammar_units = false;  // Disable grammar
+cfg.use_phonetic = false;        // Disable phonetic
+cfg.use_sentence_encoder = true;
+cfg.dim = 50;
+cfg.saveToFile("model.config");
+```
+
+### Calculate Model Size
+
+```bash
+# Calculate size for different configs
+./model-size-calculator --minimal    # Word embeddings only
+./model-size-calculator --compact    # Word + char n-grams
+./model-size-calculator --standard   # All features except sentence
+./model-size-calculator --full       # All features
+./model-size-calculator --tiny       # All features, sparse storage
+```
 
 ## 📖 Documentation
 
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Installation and first steps
-- **[INTENT_CLASSIFICATION_EXAMPLE.md](INTENT_CLASSIFICATION_EXAMPLE.md)** - Complete example: text vs word vs sentence
-- **[TINY_MODELS.md](TINY_MODELS.md)** - Tiny models guide (recommended)
-- **[COMPACT_MODELS.md](COMPACT_MODELS.md)** - Ultra-compact models
-- **[SENTENCE_ENCODING.md](SENTENCE_ENCODING.md)** - Sentence-level encoding (optional)
+- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
+- **[INTENT_CLASSIFICATION_EXAMPLE.md](INTENT_CLASSIFICATION_EXAMPLE.md)** - Complete example
+- **[SENTENCE_ENCODING.md](SENTENCE_ENCODING.md)** - Sentence-level encoding guide
 - **[TRANSFER_LEARNING.md](TRANSFER_LEARNING.md)** - Transfer learning guide
+- **[COMPACT_MODELS.md](COMPACT_MODELS.md)** - Ultra-compact models (4-20KB)
+- **[TINY_MODELS.md](TINY_MODELS.md)** - Tiny models with all features
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture
 - **[INDEX.md](INDEX.md)** - Documentation index
 
-## 🎯 Use Cases
+## 🎓 Examples
 
-### Intent Classification (Chatbots)
+### Example 1: Simple Intent Classifier
+
 ```bash
-# Basic intent classification
-./gladtotext-tiny intents.txt chatbot.bin -dim 30 -epoch 50
-# Result: 126KB model with 90%+ accuracy
+# Create training data
+cat > intents.txt << EOF
+__greeting hello
+__greeting hi there
+__farewell goodbye
+__farewell see you
+EOF
 
-# With sentence-level encoding (word order matters)
+# Train
 ./gladtotext supervised -input intents.txt -output chatbot \
-  -dim 50 -epoch 15 -sentence
-# Result: Better accuracy for complex intents
+  -dim 30 -epoch 20 -minCount 1
+
+# Test
+echo "hello friend" | ./gladtotext-infer predict chatbot.bin 1
 ```
 
-### Sentiment Analysis
-```bash
-# Pretrain on reviews
-./gladtotext cbow -input reviews.txt -output pretrained -dim 100
+### Example 2: With Sentence Encoding
 
-# Fine-tune for sentiment
-./gladtotext supervised -input sentiment.txt -output classifier \
+```bash
+# Train with sentence encoding
+./gladtotext supervised -input intents.txt -output chatbot \
+  -dim 50 -epoch 20 -minCount 1 -sentence
+
+# Test - model automatically uses sentence encoding
+echo "hello friend" | ./gladtotext-infer predict chatbot.bin 1
+```
+
+### Example 3: Transfer Learning
+
+```bash
+# Pretrain on large corpus
+./gladtotext cbow -input wiki.txt -output pretrained -dim 100 -epoch 10
+
+# Fine-tune on labeled data
+./gladtotext supervised -input labels.txt -output classifier \
   -pretrained pretrained.bin -epoch 20
 ```
 
-### Mobile/Edge Deployment
-```cpp
-// Load 126KB model
-TinyModel model;
-model.load("classifier.bin");
+### Example 4: Compare All Three Approaches
 
-// Fast inference (< 1ms)
-auto result = model.predict(user_input);
+```bash
+# Run complete comparison
+./example_intent_classification.sh
 ```
 
-## 🔧 Technical Highlights
+## 🔬 Model Size Breakdown
 
-### Sparse Matrix Storage
-Only stores non-zero values, achieving 90% memory reduction:
-```cpp
-unordered_map<int, unordered_map<int, float>> sparse;
+For a typical model with dim=50, vocab=10K, 10 classes:
+
+| Component | Size (Dense) | Size (Sparse) | Active |
+|-----------|--------------|---------------|--------|
+| Word Embeddings | 2 MB | 200 KB | ✓ |
+| Char N-grams | 400 MB | 40 MB | ✓ |
+| Grammar Units | 20 KB | 2 KB | ✓ |
+| Phonetic | 10 KB | 1 KB | ✓ |
+| Vector Attention | 200 B | 200 B | ✓ |
+| Sentence Encoder | 30 KB | 3 KB | Optional |
+| Classifier | 2 KB | 2 KB | ✓ |
+| **TOTAL** | **402 MB** | **40 MB** | - |
+
+With sparse matrices: **90% size reduction**  
+With quantization: **Additional 4x reduction**
+
+## ⚙️ Command-Line Options
+
+### Training Options
+
+```
+-input FILE       Training data file
+-output NAME      Output model name
+-dim N            Embedding dimension (20-100)
+-epoch N          Training epochs (5-30)
+-lr FLOAT         Learning rate (0.01-0.2)
+-minCount N       Min word frequency (default: 5)
+-minn N           Min char n-gram length (default: 3)
+-maxn N           Max char n-gram length (default: 6)
+-bucket N         Hash bucket size (default: 2000000)
+-sentence         Enable sentence encoding
+-pretrained FILE  Pretrained model for transfer learning
 ```
 
-### Lazy Initialization
-Embeddings initialized on first access, saving memory for unused features.
+### CBOW-Specific Options
 
-### Quantization
-Stores values as int8 instead of float32, achieving 4x size reduction.
+```
+-neg N            Negative samples (default: 5)
+-ws N             Context window size (default: 5)
+```
 
-### Auto-Pruning
-Removes near-zero values during training for continuous optimization.
+## 🧪 Testing
+
+```bash
+# Run all tests
+make test
+
+# Run specific test
+./tests/t1  # Backbone test
+./tests/t2  # Dictionary test
+./tests/t3  # Unsupervised test
+./tests/t4  # Supervised test
+./tests/t5  # Memory test
+```
 
 ## 📈 Performance
-
-### Size Reduction
-- Tiny vs Standard: **93x smaller**
-- Tiny vs FastText: **1.6x smaller**
-- Compact vs Standard: **1675x smaller**
 
 ### Speed
 - Training: 5K-10K examples/sec
 - Inference: 0.1-2ms per prediction
-- Memory: < 1MB runtime
+- Memory: < 1MB runtime (with sparse matrices)
 
 ### Accuracy
 - Simple tasks: 85-90%
 - Medium tasks: 90-93%
 - Complex tasks: 93-95%
+
+### Size Reduction
+- Sparse vs Dense: 90% smaller
+- Tiny vs Standard: 93x smaller
+- Compact vs Standard: 1675x smaller
 
 ## 🛠️ Requirements
 
@@ -156,87 +273,84 @@ Removes near-zero values during training for continuous optimization.
 - Make (for building)
 - No external dependencies
 
-## 📦 Installation
+## 📝 Training Data Format
 
-```bash
-git clone https://github.com/yourusername/GLADtoTEXT.git
-cd GLADtoTEXT
-make all && make compact && make tiny
-make test  # Verify installation
+### Supervised (Classification)
+```
+__label1 text for label 1
+__label2 text for label 2
+__label1 another example for label 1
 ```
 
-## 🎓 Examples
-
-### Example 1: Intent Classification
-
-```bash
-# Create training data
-cat > intents.txt << EOF
-__label__book_flight book a flight to paris
-__label__book_hotel find a hotel in rome
-__label__cancel cancel my reservation
-__label__status check my booking
-EOF
-
-# Train tiny model (126KB with ALL features)
-./gladtotext-tiny intents.txt model.bin -dim 30 -epoch 50
-
-# Predict
-echo "i want to fly to london" | ./gladtotext-compact-infer model.bin 1
+### CBOW (Unsupervised)
+```
+plain text corpus
+one sentence per line
+no labels needed
 ```
 
-### Example 2: Transfer Learning
+## 🎯 Use Cases
 
-```bash
-# Step 1: Pretrain on large corpus
-./gladtotext cbow -input wiki.txt -output pretrained -dim 100 -epoch 10
+- **Chatbots** - Intent classification with sentence encoding
+- **Sentiment Analysis** - Understand negation and modifiers
+- **Spam Detection** - Fast keyword-based classification
+- **Search** - Semantic similarity with word embeddings
+- **Mobile/Edge** - Ultra-compact models (4-200KB)
 
-# Step 2: Fine-tune on labeled data
-./gladtotext supervised -input labels.txt -output classifier \
-  -pretrained pretrained.bin -epoch 20
+## 🚀 Advanced Features
 
-# Step 3: Predict
-echo "text" | ./gladtotext-infer predict classifier.bin 1
-```
+### Memory Optimization
+- Sparse matrices (90% reduction)
+- Quantization (4x reduction)
+- Auto-pruning during training
+- Lazy initialization
+
+### Regularization
+- L2 weight decay
+- Gradient clipping
+- Dropout (configurable)
+
+### Initialization
+- Xavier/Glorot initialization
+- He initialization (for ReLU)
+- Custom random seed
+
+## 📦 Model Files
+
+Models are saved in binary format (`.bin`) containing:
+- Metadata (magic number, dimensions, parameters)
+- Dictionary (words, labels)
+- Embeddings (word, char n-gram, grammar, phonetic)
+- Attention weights
+- Classifier prototypes
+- Sentence encoder (if enabled)
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions welcome! Areas for improvement:
+- Additional subword features
+- More attention mechanisms
+- Quantization schemes
+- Language-specific optimizations
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see LICENSE file for details
 
 ## 🙏 Acknowledgments
 
-- Inspired by [FastText](https://fasttext.cc/) by Facebook AI Research
-- Character n-grams implementation based on FastText paper (Bojanowski et al., 2017)
-- FNV-1a hash function (Fowler-Noll-Vo)
+Inspired by FastText (Facebook Research) with enhancements:
+- Sentence-level encoding
+- Configurable layers
+- Transfer learning
+- Memory optimization
 
-## 📚 Citation
+## 📞 Support
 
-If you use GLADtoTEXT in your research, please cite:
-
-```bibtex
-@software{gladtotext2024,
-  title={GLADtoTEXT: Efficient Text Embeddings with Enhanced Features},
-  author={Your Name},
-  year={2024},
-  url={https://github.com/yourusername/GLADtoTEXT}
-}
-```
-
-## 🔗 Links
-
-- [Documentation](INDEX.md)
-- [Getting Started](GETTING_STARTED.md)
-- [Examples](examples/)
-- [Issues](https://github.com/yourusername/GLADtoTEXT/issues)
-
-## ⭐ Star History
-
-If you find this project useful, please consider giving it a star!
+- Documentation: See `docs/` folder
+- Examples: Run `./example_intent_classification.sh`
+- Issues: Check existing documentation first
 
 ---
 
-**Made with ❤️ for the NLP community**
+**GLADtoTEXT** - Configurable text embeddings for production use

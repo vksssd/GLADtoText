@@ -88,4 +88,44 @@ struct Dictionary {
     int totalSize() const {
         return phonetic_offset + phonetic2id.size();
     }
+    
+    // --- STATISTICS ---
+    
+    size_t wordCount() const {
+        return id2word.size();
+    }
+    
+    size_t grammarCount() const {
+        return grammar2id.size();
+    }
+    
+    size_t phoneticCount() const {
+        return phonetic2id.size();
+    }
+    
+    // --- UTILITY ---
+    
+    bool hasWord(const std::string& w) const {
+        return word2id.find(w) != word2id.end();
+    }
+    
+    bool hasGrammar(const std::string& g) const {
+        return grammar2id.find(g) != grammar2id.end();
+    }
+    
+    bool hasPhonetic(const std::string& p) const {
+        return phonetic2id.find(p) != phonetic2id.end();
+    }
+    
+    // Clear all data
+    void clear() {
+        word2id.clear();
+        id2word.clear();
+        grammar2id.clear();
+        phonetic2id.clear();
+        grammar_offset = 0;
+        phonetic_offset = 0;
+        bucket_size = 0;
+        bucket_offset = 0;
+    }
 };

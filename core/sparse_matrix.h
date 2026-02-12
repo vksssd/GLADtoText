@@ -67,6 +67,22 @@ public:
         return total;
     }
     
+    // Get number of non-zero elements
+    size_t nonZeroCount() const {
+        size_t count = 0;
+        for (const auto& row : data) {
+            count += row.second.size();
+        }
+        return count;
+    }
+    
+    // Get sparsity ratio (0 = dense, 1 = completely sparse)
+    float sparsity() const {
+        size_t total_elements = rows * cols;
+        size_t non_zero = nonZeroCount();
+        return 1.0f - (float)non_zero / total_elements;
+    }
+    
     // Prune small values to save memory
     void prune(float threshold = 1e-4f) {
         std::vector<int> rows_to_remove;
@@ -87,5 +103,30 @@ public:
         for (int row : rows_to_remove) {
             data.erase(row);
         }
+    }
+    
+    // L2 regularization (weight decay)
+    void l2Regularize(float lambda, float lr) {
+        for (auto& row_pair : data) {
+            for (auto& col_pair : row_pair.second) {
+                col_pair.second *= (1.0f - lambda * lr);
+            }
+        }
+    }
+    
+    // Zero out all elements
+    void zero() {
+        data.clear();
+    }
+    
+    // Convert to dense matrix (for debugging)
+    std::vector<std::vector<float>> toDense() const {
+        std::vector<std::vector<float>> dense(rows, std::vector<float>(cols, 0.0f));
+        for (const auto& row_pair : data) {
+            for (const auto& col_pair : row_pair.second) {
+                dense[row_pair.first][col_pair.first] = col_pair.second;
+            }
+        }
+        return dense;
     }
 };

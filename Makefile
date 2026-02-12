@@ -8,17 +8,20 @@ INFER_BIN = gladtotext-infer
 COMPACT_TRAIN_BIN = gladtotext-compact
 COMPACT_INFER_BIN = gladtotext-compact-infer
 TINY_TRAIN_BIN = gladtotext-tiny
+SIZE_CALC = model-size-calculator
 
 # Test binaries
 TEST_BINS = tests/t1 tests/t2 tests/t3 tests/t4 tests/t5
 
-.PHONY: all clean test install compact tiny
+.PHONY: all clean test install compact tiny tools
 
 all: $(TRAIN_BIN) $(INFER_BIN)
 
 compact: $(COMPACT_TRAIN_BIN) $(COMPACT_INFER_BIN)
 
 tiny: $(TINY_TRAIN_BIN)
+
+tools: $(SIZE_CALC)
 
 $(TRAIN_BIN): main.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
@@ -33,6 +36,9 @@ $(COMPACT_INFER_BIN): compact_infer.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
 $(TINY_TRAIN_BIN): tiny_model.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
+
+$(SIZE_CALC): model_size_calculator.cpp
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -o $@
 
 # Tests
@@ -57,8 +63,8 @@ test: $(TEST_BINS)
 	@echo "All tests passed!"
 
 clean:
-	rm -f $(TRAIN_BIN) $(INFER_BIN) $(COMPACT_TRAIN_BIN) $(COMPACT_INFER_BIN) $(TINY_TRAIN_BIN) $(TEST_BINS)
-	rm -f *.bin *.o
+	rm -f $(TRAIN_BIN) $(INFER_BIN) $(COMPACT_TRAIN_BIN) $(COMPACT_INFER_BIN) $(TINY_TRAIN_BIN) $(SIZE_CALC) $(TEST_BINS)
+	rm -f *.bin *.o *.config
 
 install: all compact
 	@echo "Installing to /usr/local/bin (requires sudo)"
