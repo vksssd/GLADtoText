@@ -4,7 +4,7 @@
 int main() {
     Config cfg;
     cfg.char_ngram_min = 3;
-    cfg.char_ngram_max = 6;
+    cfg.char_ngram_max = 5;
 
     CharNgrams extractor(cfg);
 
@@ -19,3 +19,4 @@ int main() {
 
     return 0;
 }
+
