@@ -11,6 +11,11 @@ This is your complete guide to GLADtoTEXT - a FastText-inspired text embedding a
 → Run `./demo_compact.sh` - See 1500x size reduction  
 → Perfect for mobile apps, edge devices, production
 
+### For Sentence-Level Understanding
+→ **[SENTENCE_ENCODING.md](SENTENCE_ENCODING.md)** - Word order and context  
+→ Run `./demo_sentence_encoding.sh` - Compare bag-of-words vs sentence encoding  
+→ Best for intent classification where word order matters
+
 ### For Best Accuracy
 → **[TRANSFER_LEARNING.md](TRANSFER_LEARNING.md)** - Pretrain + fine-tune  
 → Run `./test_transfer_learning.sh` - See 5-10% improvement  
@@ -35,6 +40,17 @@ This is your complete guide to GLADtoTEXT - a FastText-inspired text embedding a
 - Size vs accuracy trade-offs
 
 **Start here if:** You need small models for production
+
+#### [SENTENCE_ENCODING.md](SENTENCE_ENCODING.md) ⭐ NEW
+**For:** Intent classification with word order  
+**Contains:**
+- Sentence-level encoding with self-attention
+- When to use vs bag-of-words
+- Position encoding and attention mechanisms
+- Performance characteristics
+- Best practices and examples
+
+**Start here if:** Word order matters for your task
 
 #### [GETTING_STARTED.md](GETTING_STARTED.md)
 **For:** First-time users  
@@ -169,6 +185,7 @@ echo "text" | ./gladtotext-infer predict classifier.bin 1
 | CBOW Training | ✅ | [README.md](README.md) |
 | Supervised Training | ✅ | [README.md](README.md) |
 | Transfer Learning | ✅ | [TRANSFER_LEARNING.md](TRANSFER_LEARNING.md) |
+| Sentence Encoding | ✅ | [SENTENCE_ENCODING.md](SENTENCE_ENCODING.md) |
 | Character N-grams | ✅ | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Vector Attention | ✅ | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Grammar Units | ✅ | [ARCHITECTURE.md](ARCHITECTURE.md) |

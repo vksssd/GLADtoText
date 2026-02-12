@@ -12,6 +12,7 @@
 #include "model/embeddings.h"
 #include "model/attention.h"
 #include "model/backbone.h"
+#include "model/sentence_encoder.h"
 #include "heads/semantic.h"
 #include "heads/classify.h"
 
@@ -24,6 +25,8 @@ void printUsage() {
     std::cout << "    ./gladtotext supervised -input train.txt -output model -dim 100 -epoch 5\n\n";
     std::cout << "  Train supervised with pretrained embeddings:\n";
     std::cout << "    ./gladtotext supervised -input train.txt -output model -pretrained cbow_model.bin -epoch 5\n\n";
+    std::cout << "  Train supervised with sentence encoding:\n";
+    std::cout << "    ./gladtotext supervised -input train.txt -output model -dim 100 -epoch 5 -sentence\n\n";
     std::cout << "  Get word vector:\n";
     std::cout << "    ./gladtotext print-word-vector model.bin < words.txt\n\n";
     std::cout << "  Predict:\n";
@@ -44,6 +47,7 @@ struct Args {
     int minn = 3;
     int maxn = 6;
     int bucket = 2000000;
+    bool useSentenceEncoder = false;  // NEW: enable sentence-level encoding
     
     bool parse(int argc, char** argv) {
         if (argc < 2) return false;
@@ -63,6 +67,7 @@ struct Args {
             else if (arg == "-minn" && i + 1 < argc) minn = std::stoi(argv[++i]);
             else if (arg == "-maxn" && i + 1 < argc) maxn = std::stoi(argv[++i]);
             else if (arg == "-bucket" && i + 1 < argc) bucket = std::stoi(argv[++i]);
+            else if (arg == "-sentence") useSentenceEncoder = true;  // NEW
         }
         return true;
     }
@@ -369,7 +374,12 @@ void trainSupervised(const Args& args) {
     
     // Initialize model
     Backbone backbone(emb, att, dim);
+    SentenceEncoder sentEnc(dim, args.useSentenceEncoder);
     Classifier clf(id2label.size(), dim, &backbone, args.lr);
+    
+    if (args.useSentenceEncoder) {
+        std::cout << "Sentence-level encoding ENABLED\n";
+    }
     
     // Training loop
     for (int epoch = 0; epoch < args.epoch; epoch++) {
@@ -384,18 +394,41 @@ void trainSupervised(const Args& args) {
             // Extract label and text
             int label = -1;
             std::vector<int> textIds;
+            std::vector<std::string> words;
             
             for (const auto& word : tokens) {
                 if (word[0] == '_' && word.size() > 2 && word.substr(0, 2) == "__") {
                     label = label2id[word];
                 } else {
+                    words.push_back(word);
                     auto ids = getSubwordIds(word, dict, ngrams);
                     textIds.insert(textIds.end(), ids.begin(), ids.end());
                 }
             }
             
             if (label >= 0 && !textIds.empty()) {
-                float loss = clf.trainExample(textIds, label);
+                float loss;
+                
+                if (args.useSentenceEncoder) {
+                    // Sentence-level: encode each word, then combine with sentence encoder
+                    std::vector<Vector> wordEmbeddings;
+                    for (const auto& word : words) {
+                        auto ids = getSubwordIds(word, dict, ngrams);
+                        if (!ids.empty()) {
+                            wordEmbeddings.push_back(backbone.forward(ids));
+                        }
+                    }
+                    
+                    // Encode sentence
+                    Vector sentenceVec = sentEnc.encode(wordEmbeddings);
+                    
+                    // Classify sentence vector
+                    loss = clf.trainExampleWithVector(sentenceVec, label);
+                } else {
+                    // Word-level: simple bag-of-words
+                    loss = clf.trainExample(textIds, label);
+                }
+                
                 totalLoss += loss;
                 processed++;
             }
@@ -418,6 +451,10 @@ void trainSupervised(const Args& args) {
     out.write((char*)&minn, sizeof(minn));
     out.write((char*)&maxn, sizeof(maxn));
     out.write((char*)&bucket, sizeof(bucket));
+    
+    // Save sentence encoder flag
+    int sentenceFlag = args.useSentenceEncoder ? 1 : 0;
+    out.write((char*)&sentenceFlag, sizeof(sentenceFlag));
     
     // Save dictionary
     int nwords = dict.id2word.size();
@@ -451,6 +488,37 @@ void trainSupervised(const Args& args) {
     int protoSize = clf.prototypes.w.size();
     out.write((char*)&protoSize, sizeof(protoSize));
     out.write((char*)clf.prototypes.w.data(), protoSize * sizeof(float));
+    
+    // Save sentence encoder if enabled
+    if (args.useSentenceEncoder) {
+        // Save attention matrices (query, key, value)
+        int attDim = sentEnc.attention->dim;
+        out.write((char*)&attDim, sizeof(attDim));
+        
+        // Save query weights
+        for (int i = 0; i < attDim; i++) {
+            for (int j = 0; j < attDim; j++) {
+                float val = sentEnc.attention->query_w.get(i, j);
+                out.write((char*)&val, sizeof(val));
+            }
+        }
+        
+        // Save key weights
+        for (int i = 0; i < attDim; i++) {
+            for (int j = 0; j < attDim; j++) {
+                float val = sentEnc.attention->key_w.get(i, j);
+                out.write((char*)&val, sizeof(val));
+            }
+        }
+        
+        // Save value weights
+        for (int i = 0; i < attDim; i++) {
+            for (int j = 0; j < attDim; j++) {
+                float val = sentEnc.attention->value_w.get(i, j);
+                out.write((char*)&val, sizeof(val));
+            }
+        }
+    }
     
     out.close();
     std::cout << "Model saved to " << args.output << ".bin\n";

@@ -9,6 +9,7 @@
 #include "model/embeddings.h"
 #include "model/attention.h"
 #include "model/backbone.h"
+#include "model/sentence_encoder.h"
 #include "heads/classify.h"
 
 struct Model {
@@ -18,12 +19,15 @@ struct Model {
     Embeddings* emb = nullptr;
     VectorAttention* att = nullptr;
     Backbone* backbone = nullptr;
+    SentenceEncoder* sentEnc = nullptr;
     Classifier* clf = nullptr;
     std::vector<std::string> labels;
     bool supervised = false;
+    bool useSentenceEncoder = false;
     
     ~Model() {
         delete clf;
+        delete sentEnc;
         delete backbone;
         delete att;
         delete emb;
@@ -51,6 +55,13 @@ struct Model {
         in.read((char*)&minn, sizeof(minn));
         in.read((char*)&maxn, sizeof(maxn));
         in.read((char*)&bucket, sizeof(bucket));
+        
+        // Read sentence encoder flag if supervised
+        if (supervised) {
+            int sentenceFlag = 0;
+            in.read((char*)&sentenceFlag, sizeof(sentenceFlag));
+            useSentenceEncoder = (sentenceFlag == 1);
+        }
         
         // Read dictionary
         int nwords;
@@ -99,6 +110,41 @@ struct Model {
             int protoSize;
             in.read((char*)&protoSize, sizeof(protoSize));
             in.read((char*)clf->prototypes.w.data(), protoSize * sizeof(float));
+            
+            // Read sentence encoder if enabled
+            if (useSentenceEncoder) {
+                sentEnc = new SentenceEncoder(dim, true);
+                
+                int attDim;
+                in.read((char*)&attDim, sizeof(attDim));
+                
+                // Load query weights
+                for (int i = 0; i < attDim; i++) {
+                    for (int j = 0; j < attDim; j++) {
+                        float val;
+                        in.read((char*)&val, sizeof(val));
+                        sentEnc->attention->query_w.set(i, j, val);
+                    }
+                }
+                
+                // Load key weights
+                for (int i = 0; i < attDim; i++) {
+                    for (int j = 0; j < attDim; j++) {
+                        float val;
+                        in.read((char*)&val, sizeof(val));
+                        sentEnc->attention->key_w.set(i, j, val);
+                    }
+                }
+                
+                // Load value weights
+                for (int i = 0; i < attDim; i++) {
+                    for (int j = 0; j < attDim; j++) {
+                        float val;
+                        in.read((char*)&val, sizeof(val));
+                        sentEnc->attention->value_w.set(i, j, val);
+                    }
+                }
+            }
         }
         
         in.close();
@@ -141,8 +187,10 @@ struct Model {
         std::istringstream iss(text);
         std::string word;
         std::vector<int> textIds;
+        std::vector<std::string> words;
         
         while (iss >> word) {
+            words.push_back(word);
             auto ids = getSubwordIds(word);
             textIds.insert(textIds.end(), ids.begin(), ids.end());
         }
@@ -150,7 +198,22 @@ struct Model {
         if (textIds.empty()) return {};
         
         // Get representation
-        Vector h = backbone->forward(textIds);
+        Vector h;
+        
+        if (useSentenceEncoder) {
+            // Sentence-level: encode each word, then combine
+            std::vector<Vector> wordEmbeddings;
+            for (const auto& w : words) {
+                auto ids = getSubwordIds(w);
+                if (!ids.empty()) {
+                    wordEmbeddings.push_back(backbone->forward(ids));
+                }
+            }
+            h = sentEnc->encode(wordEmbeddings);
+        } else {
+            // Word-level: simple bag-of-words
+            h = backbone->forward(textIds);
+        }
         
         // Compute scores
         std::vector<std::pair<std::string, float>> results;
@@ -188,7 +251,11 @@ int main(int argc, char** argv) {
     }
     
     std::cout << "Model loaded: " << model.dict.id2word.size() << " words, "
-              << "dim=" << model.dim << "\n";
+              << "dim=" << model.dim;
+    if (model.useSentenceEncoder) {
+        std::cout << ", sentence-encoding=ON";
+    }
+    std::cout << "\n";
     
     if (command == "print-word-vector") {
         std::string word;

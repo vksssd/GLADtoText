@@ -13,6 +13,7 @@
 #include "subwords/phonetic.h"
 #include "model/tiny_embeddings.h"
 #include "model/attention.h"
+#include "model/sentence_encoder.h"
 
 // Quantize float to int8 (-128 to 127)
 inline int8_t quantize(float val, float scale) {
@@ -42,12 +43,14 @@ struct TinyClassifier {
     SparseMatrix* prototypes = nullptr;
     CharNgrams* ngrams = nullptr;
     GrammarUnitInducer* grammar = nullptr;
+    SentenceEncoder* sentence_encoder = nullptr;  // NEW
     
     int dim;
     int minn, maxn, bucket;
     bool use_char_ngrams;
     bool use_grammar;
     bool use_phonetic;
+    bool use_sentence_encoding;  // NEW
     
     ~TinyClassifier() {
         delete emb;
@@ -55,6 +58,7 @@ struct TinyClassifier {
         delete prototypes;
         delete ngrams;
         delete grammar;
+        delete sentence_encoder;  // NEW
     }
     
     void train(const std::string& input_file,
@@ -64,6 +68,7 @@ struct TinyClassifier {
                bool char_ngrams = true,
                bool grammar_units = true,
                bool phonetic = true,
+               bool sentence_encoding = false,  // NEW
                int min_ngram = 3,
                int max_ngram = 6,
                int bucket_size = 100000) {
@@ -75,11 +80,13 @@ struct TinyClassifier {
         use_char_ngrams = char_ngrams;
         use_grammar = grammar_units;
         use_phonetic = phonetic;
+        use_sentence_encoding = sentence_encoding;  // NEW
         
         std::cout << "Training tiny model with ALL features...\n";
         std::cout << "  Char n-grams: " << (char_ngrams ? "ON" : "OFF") << "\n";
         std::cout << "  Grammar units: " << (grammar_units ? "ON" : "OFF") << "\n";
         std::cout << "  Phonetic: " << (phonetic ? "ON" : "OFF") << "\n";
+        std::cout << "  Sentence encoding: " << (sentence_encoding ? "ON" : "OFF") << "\n";  // NEW
         
         // Phase 1: Build vocabulary and collect labels
         std::unordered_map<std::string, int> wordCounts;

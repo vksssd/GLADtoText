@@ -68,6 +68,32 @@ public:
 
         return loss;
     }
+    
+    // Train with pre-computed vector (for sentence encoding)
+    float trainExampleWithVector(const Vector& h, int label) {
+        // compute scores
+        std::vector<float> scores(num_classes);
+        for (int k = 0; k < num_classes; k++) {
+            scores[k] = prototypes.row(k).dot(h);
+        }
+        scores[label] -= margin;
+
+        float denom = softmaxDenom(scores);
+        float loss = -scores[label] + std::log(denom);
+
+        // gradient wrt scores
+        for (int k = 0; k < num_classes; k++) {
+            float pk = std::exp(scores[k]) / denom;
+            float grad = (k == label ? pk - 1.0f : pk);
+
+            // update prototype
+            Vector grad_p = h;
+            grad_p.scale(-lr * grad);
+            prototypes.addRow(grad_p, k, 1.0f);
+        }
+
+        return loss;
+    }
 
 private:
     void backpropToBackbone(const std::vector<int>& ids,

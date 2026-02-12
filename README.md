@@ -13,6 +13,7 @@ GLADtoTEXT is a high-performance text embedding and classification system that o
 - **FastText-compatible** character n-grams with FNV-1a hashing
 - **Tiny memory footprint** - 126KB models with ALL features (93x smaller than standard)
 - **Enhanced features** - Grammar units, phonetic encoding, vector attention
+- **Sentence-level encoding** - Optional self-attention for word order and context (triggerable)
 - **Transfer learning** - Pretrain on large corpus, fine-tune on small labeled data
 - **Three model types** - Compact (4KB), Tiny (126KB), Standard (11MB)
 - **Production-ready** - Fast inference (< 2ms), low memory (< 1MB)
@@ -73,8 +74,10 @@ echo "book a flight to paris" | ./gladtotext-compact-infer model.bin 1
 ## 📖 Documentation
 
 - **[GETTING_STARTED.md](GETTING_STARTED.md)** - Installation and first steps
+- **[INTENT_CLASSIFICATION_EXAMPLE.md](INTENT_CLASSIFICATION_EXAMPLE.md)** - Complete example: text vs word vs sentence
 - **[TINY_MODELS.md](TINY_MODELS.md)** - Tiny models guide (recommended)
 - **[COMPACT_MODELS.md](COMPACT_MODELS.md)** - Ultra-compact models
+- **[SENTENCE_ENCODING.md](SENTENCE_ENCODING.md)** - Sentence-level encoding (optional)
 - **[TRANSFER_LEARNING.md](TRANSFER_LEARNING.md)** - Transfer learning guide
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture
 - **[INDEX.md](INDEX.md)** - Documentation index
@@ -83,8 +86,14 @@ echo "book a flight to paris" | ./gladtotext-compact-infer model.bin 1
 
 ### Intent Classification (Chatbots)
 ```bash
+# Basic intent classification
 ./gladtotext-tiny intents.txt chatbot.bin -dim 30 -epoch 50
 # Result: 126KB model with 90%+ accuracy
+
+# With sentence-level encoding (word order matters)
+./gladtotext supervised -input intents.txt -output chatbot \
+  -dim 50 -epoch 15 -sentence
+# Result: Better accuracy for complex intents
 ```
 
 ### Sentiment Analysis
