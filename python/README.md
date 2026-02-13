@@ -26,7 +26,9 @@ pip install -e .
 
 ## Quick Start
 
-### 1. Train a Model (using C++ CLI)
+**Important:** Training is done via C++ CLI. Python is for inference only.
+
+### 1. Train a Model (C++ CLI)
 
 ```bash
 # Create training data
@@ -37,11 +39,11 @@ __farewell goodbye
 __farewell see you
 EOF
 
-# Train model
+# Train model using C++
 ./gladtotext supervised -input train.txt -output model -dim 30 -epoch 20
 ```
 
-### 2. Use from Python
+### 2. Use from Python (Inference)
 
 ```python
 import gladtotext
@@ -65,6 +67,8 @@ for label, score in predictions:
 ```
 
 ## API Reference
+
+**Note:** The Python API currently supports inference only. Training must be done using the C++ CLI.
 
 ### Model Class
 
