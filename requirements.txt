@@ -1,6 +1,0 @@
-# Core dependencies for Python bindings
-pybind11>=2.10.0
-numpy>=1.19.0
-
-# Optional dependencies for examples
-scikit-learn>=0.24.0  # For clustering examples

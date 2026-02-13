@@ -1,207 +1,173 @@
-# GLADtoTEXT
+# GLADtoTEXT Revisit - Modern C++ Implementation
 
-> FastText-inspired text embeddings with sentence-level encoding and configurable layers
+Clean, modular rewrite of GLADtoTEXT with modern C++ practices, comprehensive testing, and CMake build system.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
+## Features
 
-Production-ready text embedding and classification system with three approaches: text-level (bag-of-words), word-level (subword features), and sentence-level (attention).
+- ✅ **Modern C++17**: Clean interfaces, RAII, proper const-correctness
+- ✅ **CMake Build System**: Cross-platform, IDE-friendly
+- ✅ **Comprehensive Tests**: GoogleTest framework with 18+ unit tests
+- ✅ **Memory Efficient**: Aligned allocations for SIMD, proper resource management
+- ✅ **Deterministic**: Seeded RNG for reproducible experiments
+- ✅ **Modular Design**: Clear separation of concerns
 
-## ✨ Features
+## Components
 
-- **Three Approaches** - Text, word, and sentence-level classification
-- **Configurable Layers** - Enable/disable features as needed
-- **Sentence Encoding** - Optional self-attention for word order
-- **Transfer Learning** - Pretrain + fine-tune workflow
-- **Multiple Sizes** - From 4KB (compact) to full-featured models
-- **Memory Efficient** - Sparse matrices, quantization, pruning
-- **No Dependencies** - Pure C++17, stdlib only
+### Core
+- **ModelConfig**: Centralized configuration (no feature flags)
+- **EmbeddingTable**: Hash-based embedding storage with aligned memory
+- **WordEncoder**: N-gram + phonetic encoding
+- **NGramGenerator**: Character n-gram extraction
+- **PhoneticEncoder**: Soundex-like phonetic encoding
+- **HashFunction**: FNV-1a and MurmurHash3 implementations
 
-## 🚀 Quick Start
+### Utils
+- **RNG**: Deterministic random number generation (MT19937-64)
+- **Logger**: Thread-safe logging with levels
+- **AlignedAlloc**: SIMD-friendly memory allocation
 
-**New to GLADtoTEXT?** See [GETTING_STARTED.md](GETTING_STARTED.md) for a 5-minute tutorial.
+### Tokenization
+- **EnglishTokenizer**: Simple whitespace + punctuation tokenizer
 
-### C++ (Command Line)
-
-```bash
-# Build
-make all
-
-# Train
-./gladtotext supervised -input train.txt -output model -dim 30 -epoch 10
-
-# Predict
-echo "your text" | ./gladtotext-infer predict model.bin 1
-```
-
-### Python
+## Building
 
 ```bash
-# Install dependencies first
-pip install pybind11 numpy
+# Run tests
+./build_and_test.sh
 
-# Install from GitHub
-pip install git+https://github.com/vksssd/GLADtoTEXT.git
+# Or manually
+mkdir build && cd build
+cmake ..
+cmake --build .
+ctest --output-on-failure
 
-# Or install locally
-pip install .
-
-# Use
-python3
->>> import gladtotext
->>> model = gladtotext.Model()
->>> model.load_model("model.bin")
->>> model.predict("your text", k=1)
+# Run example
+./build/example_usage
 ```
 
-See [PYTHON_GUIDE.md](PYTHON_GUIDE.md) for complete Python documentation.
-
-## 📊 Three Approaches
-
-| Approach | Speed | Size | Order | Typos | Use Case |
-|----------|-------|------|-------|-------|----------|
-| **Text-level** | ⚡⚡⚡ | 📦 | ❌ | ❌ | Simple keywords |
-| **Word-level** | ⚡⚡ | 📦📦 | ❌ | ✅ | Typo-tolerant |
-| **Sentence-level** | ⚡ | 📦📦📦 | ✅ | ✅ | Order matters |
-
-### Text-Level (Fastest)
-```bash
-./gladtotext supervised -input train.txt -output model -dim 30 -epoch 10
-```
-
-### Word-Level (Typo-Tolerant)
-```bash
-./gladtotext supervised -input train.txt -output model \
-  -dim 50 -epoch 15 -minn 3 -maxn 6
-```
-
-### Sentence-Level (Order-Aware)
-```bash
-./gladtotext supervised -input train.txt -output model \
-  -dim 50 -epoch 20 -minn 3 -maxn 6 -sentence
-```
-
-## 📖 Documentation
-
-### User Guides
-- **[GUIDE.md](GUIDE.md)** - Complete training and usage guide
-- **[PYTHON_GUIDE.md](PYTHON_GUIDE.md)** - Python bindings guide
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development guidelines
-
-### Examples & Tests
-- **[examples/](examples/)** - Working examples
-- **[tests/](tests/)** - Test suite
-
-### Technical Docs
-- **[docs/](docs/)** - Architecture, roadmap, and technical documentation
-
-## 🎯 Example
+## Running Tests
 
 ```bash
-# Create training data
-cat > train.txt << EOF
-__greeting hello
-__greeting hi there
-__farewell goodbye
-__farewell see you
-EOF
+# All tests
+./build/gladtotext_tests
 
-# Train
-./gladtotext supervised -input train.txt -output model \
-  -dim 30 -epoch 20 -minCount 1
+# Specific test
+./build/gladtotext_tests --gtest_filter=EmbeddingTableTest.*
 
-# Test
-echo "hello friend" | ./gladtotext-infer predict model.bin 1
-# Output: __greeting 0.485
+# List tests
+./build/gladtotext_tests --gtest_list_tests
 ```
 
-## 🔧 Model Types
+## Test Coverage
 
-### Compact (4-20KB)
-```bash
-make compact
-./gladtotext-compact train.txt model.bin 20 50 0.2
+- ✅ ModelConfig: defaults, equality, validation
+- ✅ RNG: deterministic generation
+- ✅ EmbeddingTable: construction, access, determinism
+- ✅ NGramGenerator: generation, correctness
+- ✅ HashFunction: FNV-1a, MurmurHash3
+- ✅ Tokenizer: basic, punctuation, edge cases
+- ✅ LinearClassifier: forward, backward, determinism
+- ✅ Softmax & CrossEntropy: numerical stability, correctness
+- ✅ WordEncoder: encoding, determinism, phonetic contribution
+- ✅ MeanSentenceEncoder: averaging, empty handling, determinism
+- ✅ PhoneticEncoder: soundex, case handling, edge cases
+- ✅ Training: overfitting, determinism, convergence
+- ✅ Edge Cases: long inputs, special chars, unicode, extreme values
+- ✅ Integration: end-to-end pipeline, training reduces loss
+
+Total: 79 tests across 15 test suites
+
+## Example Usage
+
+```cpp
+#include "config/model_config.h"
+#include "embedding/embedding_table.h"
+#include "word_ecoder/word_encoder.h"
+
+// Create config
+ModelConfig config;
+
+// Create embeddings
+EmbeddingTable embeddings(config.bucket_count, 
+                         config.embedding_dim, 
+                         config.seed);
+
+// Create encoder
+NGramGenerator ngram(config.ngram_min, config.ngram_max);
+PhoneticEncoder phonetic;
+WordEncoder encoder(embeddings, ngram, &phonetic, 
+                   config.bucket_count, config.phonetic_gamma);
+
+// Encode word
+std::vector<float> embedding(config.embedding_dim);
+encoder.encode("hello", embedding.data());
 ```
 
-### Tiny (80-200KB) - Recommended
-```bash
-make tiny
-./gladtotext-tiny train.txt model.bin -dim 30 -epoch 50 -lr 0.1
-```
-
-### Standard (400MB+)
-```bash
-./gladtotext supervised -input train.txt -output model -dim 100 -epoch 20
-```
-
-## 🧪 Testing
-
-```bash
-make test                # Unit + integration tests
-make test-unit           # Unit tests only
-make test-integration    # Integration tests only
-make test-comprehensive  # Comprehensive test suite (3 classes, 8 classes)
-make test-stress         # Stress test suite (10K examples, 12 classes)
-make test-all            # All tests (unit + integration + comprehensive + stress)
-```
-
-### Stress Test Suite
-
-Comprehensive production validation with:
-- **10,000+ examples** across 12 real-world categories
-- **Edge cases** (typos, negations, special characters)
-- **Stress testing** (memory, concurrency, large batches)
-- **Robustness** (variations, tolerance)
-
-See [STRESS_TEST_SUITE.md](STRESS_TEST_SUITE.md) for details.
-
-## 📈 Performance
-
-- **Training**: 4K-10K examples/sec
-- **Inference**: 0.1-2ms per prediction
-- **Accuracy**: 85-95% (simple), 75-92% (complex)
-- **Size**: 4KB (compact) to 400MB (standard)
-
-## 🛠️ Requirements
-
-- C++17 compiler (GCC 7+, Clang 5+, MSVC 2017+)
-- Make
-- No external dependencies
-
-## 📝 Training Data Format
+## Architecture
 
 ```
-__label1 text for label 1
-__label2 text for label 2
-__label1 another example
+core/
+├── config/          # Configuration
+├── embedding/       # Embedding storage
+├── word_ecoder/     # Word encoding logic
+├── ngram/           # N-gram generation
+├── phonetic/        # Phonetic encoding
+├── hashing/         # Hash functions
+├── tokenizer/       # Text tokenization
+└── utils/           # Utilities (RNG, logger, memory)
+
+tests/               # Unit tests
+external/            # GoogleTest (auto-downloaded)
 ```
 
-## 🎓 Examples
+## Key Improvements Over Original
 
-```bash
-make example-quickstart   # Quick demo
-make example-intent       # Compare approaches
-make example-transfer     # Transfer learning
-make example-compact      # Compact models
-make example-sentence     # Sentence encoding
+1. **Simpler Config**: 14 parameters vs 20+ boolean flags
+2. **Better Testing**: Unit tests vs shell scripts only
+3. **Modern Build**: CMake vs basic Makefile
+4. **Cleaner Code**: Separation of concerns, RAII
+5. **Performance**: Aligned memory, scratch buffers
+6. **Reproducibility**: Seeded RNG throughout
+
+## Memory Usage
+
+Example with default config:
+- Embedding table: ~195 MB (200k buckets × 256 dim)
+- Per-word encoding: ~2 KB scratch space
+- Total: Configurable via `bucket_count` and `embedding_dim`
+
+## Configuration
+
+```cpp
+ModelConfig config;
+config.embedding_dim = 128;      // Smaller embeddings
+config.bucket_count = 100000;    // Fewer buckets
+config.ngram_min = 2;            // Shorter n-grams
+config.ngram_max = 5;
+config.phonetic_gamma = 0.1f;    // Less phonetic weight
+config.seed = 42;                // Reproducibility
 ```
 
-## 🤝 Contributing
+## Next Steps
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+- [ ] Add attention mechanism
+- [ ] Add training loop
+- [ ] Add classification head
+- [ ] Add model serialization
+- [ ] Add Python bindings
+- [ ] Add benchmarks
 
-## 📄 License
+## Comparison with Main Codebase
 
-MIT License - see LICENSE file
+| Feature | Main | Revisit |
+|---------|------|---------|
+| Build System | Makefile | CMake |
+| Testing | Shell scripts | GoogleTest |
+| Config | 20+ flags | 14 parameters |
+| Code Style | Header-only | Header + impl |
+| Memory | Manual | RAII + aligned |
+| Reproducibility | Limited | Full (seeded) |
 
-## 🙏 Acknowledgments
+## License
 
-Inspired by FastText with enhancements:
-- Sentence-level encoding
-- Configurable layers
-- Transfer learning
-- Memory optimization
-
----
-
-**Quick Links:** [Guide](GUIDE.md) | [Examples](examples/) | [Tests](tests/) | [Contributing](CONTRIBUTING.md)
+Same as main GLADtoTEXT project (MIT).
