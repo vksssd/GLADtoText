@@ -37,7 +37,13 @@ echo "your text" | ./gladtotext-infer predict model.bin 1
 ### Python
 
 ```bash
-# Install
+# Install dependencies first
+pip install pybind11 numpy
+
+# Install from GitHub
+pip install git+https://github.com/vksssd/GLADtoTEXT.git
+
+# Or install locally
 pip install .
 
 # Use
