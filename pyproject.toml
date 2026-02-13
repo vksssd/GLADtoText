@@ -1,5 +1,10 @@
 [build-system]
-requires = ["setuptools>=42", "wheel", "pybind11>=2.10.0"]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "pybind11>=2.10.0",
+    "numpy>=1.19.0",
+]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -42,7 +47,7 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/GLADtoTEXT"
-Documentation = "https://github.com/yourusername/GLADtoTEXT#readme"
-Repository = "https://github.com/yourusername/GLADtoTEXT"
-"Bug Tracker" = "https://github.com/yourusername/GLADtoTEXT/issues"
+Homepage = "https://github.com/vksssd/GLADtoTEXT"
+Documentation = "https://github.com/vksssd/GLADtoTEXT#readme"
+Repository = "https://github.com/vksssd/GLADtoTEXT"
+"Bug Tracker" = "https://github.com/vksssd/GLADtoTEXT/issues"

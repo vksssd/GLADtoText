@@ -1,5 +1,4 @@
 from setuptools import setup, Extension
-from pybind11.setup_helpers import Pybind11Extension, build_ext
 import sys
 import os
 
@@ -7,35 +6,57 @@ import os
 __version__ = "0.1.0"
 
 # Read long description from README
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+try:
+    with open("README.md", "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "GLADtoTEXT - FastText-inspired text embeddings with sentence-level encoding"
 
-ext_modules = [
-    Pybind11Extension(
-        "gladtotext",
-        ["python_bindings.cpp"],
-        include_dirs=["."],
-        cxx_std=17,
-        extra_compile_args=["-O3", "-Wall", "-Wextra"],
-    ),
-]
+# Import pybind11 after it's been installed as a setup requirement
+try:
+    from pybind11.setup_helpers import Pybind11Extension, build_ext
+    
+    ext_modules = [
+        Pybind11Extension(
+            "gladtotext",
+            ["python_bindings.cpp"],
+            include_dirs=["."],
+            cxx_std=17,
+            extra_compile_args=["-O3", "-Wall", "-Wextra"],
+        ),
+    ]
+    cmdclass = {"build_ext": build_ext}
+except ImportError:
+    # Fallback if pybind11 not available yet
+    ext_modules = [
+        Extension(
+            "gladtotext",
+            ["python_bindings.cpp"],
+            include_dirs=["."],
+            extra_compile_args=["-std=c++17", "-O3", "-Wall", "-Wextra"],
+        ),
+    ]
+    cmdclass = {}
 
 setup(
     name="gladtotext",
     version=__version__,
     author="github@vksssd",
-    author_email="",  # Add your email or leave empty
+    author_email="",
     description="FastText-inspired text embeddings with sentence-level encoding",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/vksssd/GLADtoTEXT",  # Update with actual URL
+    url="https://github.com/vksssd/GLADtoTEXT",
     project_urls={
         "Bug Tracker": "https://github.com/vksssd/GLADtoTEXT/issues",
         "Documentation": "https://github.com/vksssd/GLADtoTEXT#readme",
         "Source Code": "https://github.com/vksssd/GLADtoTEXT",
     },
     ext_modules=ext_modules,
-    cmdclass={"build_ext": build_ext},
+    cmdclass=cmdclass,
+    setup_requires=[
+        "pybind11>=2.10.0",
+    ],
     zip_safe=False,
     python_requires=">=3.7",
     install_requires=[
