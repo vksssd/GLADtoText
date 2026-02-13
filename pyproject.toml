@@ -51,3 +51,11 @@ Homepage = "https://github.com/vksssd/GLADtoTEXT"
 Documentation = "https://github.com/vksssd/GLADtoTEXT#readme"
 Repository = "https://github.com/vksssd/GLADtoTEXT"
 "Bug Tracker" = "https://github.com/vksssd/GLADtoTEXT/issues"
+
+[tool.setuptools]
+py-modules = []
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = []
+exclude = ["core*", "model*", "heads*", "training*", "subwords*", "tests*", "examples*", "docs*"]
