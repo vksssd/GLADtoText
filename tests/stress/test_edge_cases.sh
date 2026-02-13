@@ -222,9 +222,10 @@ echo "10. Testing sentence encoding with edge cases..."
   -minCount 2 \
   -sentence \
   -batch 32 \
-  > /dev/null 2>&1
+  > /tmp/edge_sentence_output.txt 2>&1
 
-if [ $? -eq 0 ]; then
+SENT_EXIT=$?
+if [ $SENT_EXIT -eq 0 ]; then
     echo "✓ Sentence encoding model trained"
     
     # Test with typos
@@ -235,9 +236,13 @@ if [ $? -eq 0 ]; then
         echo "⚠ Sentence encoding may struggle with typos"
     fi
 else
-    echo "✗ Sentence encoding training failed"
+    echo "✗ Sentence encoding training failed (exit code: $SENT_EXIT)"
+    echo "   Error output:"
+    tail -20 /tmp/edge_sentence_output.txt | sed 's/^/   /'
+    rm -f /tmp/edge_sentence_output.txt
     exit 1
 fi
+rm -f /tmp/edge_sentence_output.txt
 
 # Cleanup
 rm -f ${MODEL_NAME}*.bin edge_results.txt

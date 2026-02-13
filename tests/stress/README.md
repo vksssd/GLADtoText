@@ -2,6 +2,46 @@
 
 Comprehensive stress testing for GLADtoTEXT with large-scale datasets, edge cases, and production scenarios.
 
+## Quick Start
+
+**New to stress testing?** Start here:
+
+1. **Run diagnostics** (recommended first step):
+   ```bash
+   cd tests/stress
+   ./diagnose_test4.sh
+   ```
+
+2. **Clean up any existing files**:
+   ```bash
+   ./cleanup.sh
+   ```
+
+3. **Run the full test suite**:
+   ```bash
+   ./run_stress_tests.sh
+   ```
+
+See [QUICK_START.md](QUICK_START.md) for detailed instructions.
+
+## Recent Improvements
+
+**Enhanced Error Reporting** (Latest Update):
+- All tests now capture and display detailed error output
+- Exit codes are shown for failed commands
+- Last 10-20 lines of errors displayed for debugging
+- Temporary output files used instead of `/dev/null`
+
+**Better Cleanup**:
+- Tests clean up existing model files before starting
+- Prevents stale files from interfering with new tests
+- Cleanup script provided for manual cleanup
+
+**Diagnostic Tools**:
+- `diagnose_test4.sh` - Systematically tests each component
+- `cleanup.sh` - Interactive cleanup of model files
+- See [FIXES_APPLIED.md](FIXES_APPLIED.md) for details
+
 ## Overview
 
 This test suite validates the system's behavior under real-world conditions with:
@@ -229,6 +269,38 @@ After passing all stress tests, the system is validated for:
 ✓ Model persistence and integrity
 
 ## Troubleshooting
+
+### Understanding Error Output (New)
+
+With enhanced error reporting, failures now show:
+
+```bash
+✗ Test failed (exit code: 1)
+   Error output:
+   [Last 10-20 lines of actual error messages]
+```
+
+Common error patterns:
+
+**"Cannot open input file"**
+- Data file missing or path incorrect
+- Solution: Check `tests/data/` directory
+
+**"std::bad_alloc" or "Cannot allocate memory"**
+- Insufficient RAM for large dimensions
+- Solution: Reduce `-dim` parameter or free up memory
+
+**"Unknown option" or "Invalid argument"**
+- Unsupported command-line flag
+- Solution: Check if feature is implemented (e.g., `-attention simple`)
+
+**"Segmentation fault"**
+- Memory corruption or buffer overflow
+- Solution: Run with smaller dataset first, check for bugs
+
+**"Disk quota exceeded" or "No space left"**
+- Insufficient disk space (models can be 1GB+ each)
+- Solution: Run `./cleanup.sh` to free space
 
 ### Tests Fail to Run
 

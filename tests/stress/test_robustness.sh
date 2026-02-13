@@ -47,14 +47,19 @@ rm -f /tmp/robust_std_output.txt
   -minCount 2 \
   -sentence \
   -batch 32 \
-  > /dev/null 2>&1
+  > /tmp/robust_sent_output.txt 2>&1
 
-if [ $? -eq 0 ]; then
+SENT_EXIT=$?
+if [ $SENT_EXIT -eq 0 ]; then
     echo "✓ Sentence encoding model trained"
 else
-    echo "✗ Sentence encoding model training failed"
+    echo "✗ Sentence encoding model training failed (exit code: $SENT_EXIT)"
+    echo "   Error output:"
+    tail -20 /tmp/robust_sent_output.txt | sed 's/^/   /'
+    rm -f /tmp/robust_sent_output.txt
     exit 1
 fi
+rm -f /tmp/robust_sent_output.txt
 
 # Test 2: Typo tolerance levels
 echo ""
