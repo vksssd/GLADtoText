@@ -1,0 +1,9 @@
+__greeting hello
+__greeting hi there
+__greeting hey
+__greeting good morning
+__farewell goodbye
+__farewell bye
+__farewell see you later
+__question how are you
+__question what's your name
