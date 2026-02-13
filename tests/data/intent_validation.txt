@@ -1,0 +1,16 @@
+__book_flight I want to reserve a flight to Boston
+__book_flight Book me tickets to San Diego
+__book_hotel I need a hotel in downtown Chicago
+__book_hotel Reserve a room for two nights
+__cancel_booking Cancel my flight reservation
+__cancel_booking I want to cancel my hotel booking
+__check_status What is my booking status
+__check_status Check my flight details
+__get_weather What is the weather forecast
+__get_weather Will it rain today
+__greeting Hello how can I help you
+__greeting Hi good morning
+__farewell Goodbye thank you
+__farewell See you later bye
+__help_request I need assistance please
+__help_request Can you help me with this

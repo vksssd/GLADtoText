@@ -26,7 +26,7 @@ fi
 
 echo ""
 echo "2. Testing inference..."
-result=$(echo "hello friend" | ../../gladtotext-infer predict test_sent_model.bin 1 2>/dev/null)
+result=$(echo "hello friend" | ../../gladtotext-infer predict test_sent_model.bin 1 2>&1)
 
 if [[ $result == *"sentence-encoding=ON"* ]]; then
     echo "✓ Sentence encoding detected in model"

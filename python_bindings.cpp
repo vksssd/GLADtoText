@@ -1,8 +1,7 @@
-#include <iostream>
-#include <fstream>
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+#include <pybind11/numpy.h>
 #include <sstream>
-#include <string>
-#include <vector>
 #include "core/config.h"
 #include "core/model_config.h"
 #include "core/dictionary.h"
@@ -14,24 +13,24 @@
 #include "model/sentence_encoder.h"
 #include "heads/classify.h"
 
+namespace py = pybind11;
+
 // Load ModelConfig from binary stream
 void loadModelConfig(std::ifstream& in, ModelConfig& config) {
-    // Load layer activation flags
     in.read((char*)&config.use_word_embeddings, sizeof(bool));
     in.read((char*)&config.use_char_ngrams, sizeof(bool));
     in.read((char*)&config.use_grammar_units, sizeof(bool));
     in.read((char*)&config.use_phonetic, sizeof(bool));
     in.read((char*)&config.use_vector_attention, sizeof(bool));
     in.read((char*)&config.use_sentence_encoder, sizeof(bool));
-    
-    // Load model parameters
     in.read((char*)&config.dim, sizeof(int));
     in.read((char*)&config.bucket_size, sizeof(int));
     in.read((char*)&config.minn, sizeof(int));
     in.read((char*)&config.maxn, sizeof(int));
 }
 
-struct Model {
+class GLADtoTEXT {
+private:
     int dim;
     int minn, maxn, bucket;
     Dictionary dict;
@@ -43,9 +42,10 @@ struct Model {
     std::vector<std::string> labels;
     bool supervised = false;
     bool useSentenceEncoder = false;
-    AttentionMode attentionMode = AttentionMode::FULL;  // Default attention mode
+    AttentionMode attentionMode = AttentionMode::FULL;
     
-    ~Model() {
+public:
+    ~GLADtoTEXT() {
         delete clf;
         delete sentEnc;
         delete backbone;
@@ -53,61 +53,45 @@ struct Model {
         delete emb;
     }
     
-    bool load(const std::string& filename) {
+    bool load_model(const std::string& filename) {
         std::ifstream in(filename, std::ios::binary);
-        if (!in) {
-            std::cerr << "Cannot open model file: " << filename << "\n";
-            return false;
-        }
+        if (!in) return false;
         
-        // Read metadata
         int magic;
         in.read((char*)&magic, sizeof(magic));
         
         if (magic == 0x47414C53) {
             supervised = true;
         } else if (magic != 0x47414C44) {
-            std::cerr << "Invalid model file format\n";
             return false;
         }
         
-        // Check version
-        int version = 1;  // Default to version 1 for old models
+        int version = 1;
         int firstInt;
         in.read((char*)&firstInt, sizeof(firstInt));
         
-        // If firstInt is a reasonable version number (1-10), it's version 2+
         if (firstInt >= 1 && firstInt <= 10) {
             version = firstInt;
-            
-            // Read ModelConfig if version 2+
             if (version >= 2) {
                 ModelConfig config;
                 loadModelConfig(in, config);
-                // Use config to set flags
-                // (for now we'll still read legacy params)
             }
-            
-            // Read legacy parameters
             in.read((char*)&dim, sizeof(dim));
             in.read((char*)&minn, sizeof(minn));
             in.read((char*)&maxn, sizeof(maxn));
             in.read((char*)&bucket, sizeof(bucket));
         } else {
-            // Version 1: firstInt is actually dim
             dim = firstInt;
             in.read((char*)&minn, sizeof(minn));
             in.read((char*)&maxn, sizeof(maxn));
             in.read((char*)&bucket, sizeof(bucket));
         }
         
-        // Read sentence encoder flag if supervised
         if (supervised) {
             int sentenceFlag = 0;
             in.read((char*)&sentenceFlag, sizeof(sentenceFlag));
             useSentenceEncoder = (sentenceFlag == 1);
             
-            // Read attention mode (version 2+)
             if (version >= 2) {
                 int attModeInt = 0;
                 in.read((char*)&attModeInt, sizeof(attModeInt));
@@ -193,14 +177,11 @@ struct Model {
             in.read((char*)&protoSize, sizeof(protoSize));
             in.read((char*)clf->prototypes.w.data(), protoSize * sizeof(float));
             
-            // Read sentence encoder if enabled
             if (useSentenceEncoder) {
                 sentEnc = new SentenceEncoder(dim, true);
-                
                 int attDim;
                 in.read((char*)&attDim, sizeof(attDim));
                 
-                // Load query weights
                 for (int i = 0; i < attDim; i++) {
                     for (int j = 0; j < attDim; j++) {
                         float val;
@@ -209,7 +190,6 @@ struct Model {
                     }
                 }
                 
-                // Load key weights
                 for (int i = 0; i < attDim; i++) {
                     for (int j = 0; j < attDim; j++) {
                         float val;
@@ -218,7 +198,6 @@ struct Model {
                     }
                 }
                 
-                // Load value weights
                 for (int i = 0; i < attDim; i++) {
                     for (int j = 0; j < attDim; j++) {
                         float val;
@@ -241,7 +220,6 @@ struct Model {
         CharNgrams ngrams(cfg);
         
         std::vector<int> ids;
-        
         int wid = dict.getWordId(word);
         if (wid >= 0) ids.push_back(wid);
         
@@ -251,14 +229,12 @@ struct Model {
             ids.push_back(dict.getCharNgramId(h));
         }
         
-        // Add grammar unit IDs (if available in dictionary)
         for (const auto& kv : dict.grammar2id) {
             if (word.find(kv.first) != std::string::npos) {
                 ids.push_back(kv.second);
             }
         }
         
-        // Add phonetic ID (if available in dictionary)
         std::string phonetic = phoneticEncode(word);
         int pid = dict.getPhoneticId(phonetic);
         if (pid >= 0) ids.push_back(pid);
@@ -266,18 +242,26 @@ struct Model {
         return ids;
     }
     
-    Vector getWordVector(const std::string& word) {
+    py::array_t<float> get_word_vector(const std::string& word) {
         auto ids = getSubwordIds(word);
-        return backbone->forward(ids);
-    }
-    
-    std::vector<std::pair<std::string, float>> predict(const std::string& text, int k = 1) {
-        if (!supervised) {
-            std::cerr << "Model is not supervised\n";
-            return {};
+        Vector v = backbone->forward(ids);
+        
+        py::array_t<float> result(v.v.size());
+        auto buf = result.request();
+        float* ptr = static_cast<float*>(buf.ptr);
+        
+        for (size_t i = 0; i < v.v.size(); i++) {
+            ptr[i] = v.v[i];
         }
         
-        // Tokenize
+        return result;
+    }
+    
+    py::list predict(const std::string& text, int k = 1) {
+        if (!supervised) {
+            throw std::runtime_error("Model is not supervised");
+        }
+        
         std::istringstream iss(text);
         std::string word;
         std::vector<int> textIds;
@@ -289,13 +273,10 @@ struct Model {
             textIds.insert(textIds.end(), ids.begin(), ids.end());
         }
         
-        if (textIds.empty()) return {};
+        if (textIds.empty()) return py::list();
         
-        // Get representation
         Vector h;
-        
         if (useSentenceEncoder) {
-            // Sentence-level: encode each word, then combine
             std::vector<Vector> wordEmbeddings;
             for (const auto& w : words) {
                 auto ids = getSubwordIds(w);
@@ -305,18 +286,15 @@ struct Model {
             }
             h = sentEnc->encode(wordEmbeddings);
         } else {
-            // Word-level: simple bag-of-words
             h = backbone->forward(textIds);
         }
         
-        // Compute scores
         std::vector<std::pair<std::string, float>> results;
         for (size_t i = 0; i < labels.size(); i++) {
             float score = clf->prototypes.row(i).dot(h);
             results.push_back({labels[i], score});
         }
         
-        // Sort by score
         std::sort(results.begin(), results.end(),
                   [](const auto& a, const auto& b) { return a.second > b.second; });
         
@@ -324,56 +302,46 @@ struct Model {
             results.resize(k);
         }
         
-        return results;
+        py::list pyResults;
+        for (const auto& r : results) {
+            pyResults.append(py::make_tuple(r.first, r.second));
+        }
+        
+        return pyResults;
+    }
+    
+    py::dict get_info() {
+        py::dict info;
+        info["vocab_size"] = dict.id2word.size();
+        info["dim"] = dim;
+        info["supervised"] = supervised;
+        info["sentence_encoder"] = useSentenceEncoder;
+        if (supervised) {
+            info["num_labels"] = labels.size();
+            py::list label_list;
+            for (const auto& label : labels) {
+                label_list.append(label);
+            }
+            info["labels"] = label_list;
+        }
+        return info;
     }
 };
 
-int main(int argc, char** argv) {
-    if (argc < 3) {
-        std::cout << "Usage:\n";
-        std::cout << "  Print word vectors: " << argv[0] << " print-word-vector model.bin\n";
-        std::cout << "  Predict: " << argv[0] << " predict model.bin [k]\n";
-        return 1;
-    }
+PYBIND11_MODULE(gladtotext, m) {
+    m.doc() = "GLADtoTEXT Python bindings - FastText-inspired text embeddings";
     
-    std::string command = argv[1];
-    std::string modelFile = argv[2];
-    
-    Model model;
-    if (!model.load(modelFile)) {
-        return 1;
-    }
-    
-    std::cerr << "Model loaded: " << model.dict.id2word.size() << " words, "
-              << "dim=" << model.dim;
-    if (model.useSentenceEncoder) {
-        std::cerr << ", sentence-encoding=ON";
-    }
-    std::cerr << "\n";
-    
-    if (command == "print-word-vector") {
-        std::string word;
-        while (std::cin >> word) {
-            Vector v = model.getWordVector(word);
-            std::cout << word;
-            for (float x : v.v) {
-                std::cout << " " << x;
-            }
-            std::cout << "\n";
-        }
-    } else if (command == "predict") {
-        int k = (argc > 3) ? std::stoi(argv[3]) : 1;
-        std::string line;
-        while (std::getline(std::cin, line)) {
-            auto predictions = model.predict(line, k);
-            for (const auto& pred : predictions) {
-                std::cout << pred.first << " " << pred.second << "\n";
-            }
-        }
-    } else {
-        std::cerr << "Unknown command: " << command << "\n";
-        return 1;
-    }
-    
-    return 0;
+    py::class_<GLADtoTEXT>(m, "Model")
+        .def(py::init<>())
+        .def("load_model", &GLADtoTEXT::load_model, 
+             "Load a trained model from file",
+             py::arg("filename"))
+        .def("get_word_vector", &GLADtoTEXT::get_word_vector,
+             "Get word embedding vector",
+             py::arg("word"))
+        .def("predict", &GLADtoTEXT::predict,
+             "Predict label for text",
+             py::arg("text"), py::arg("k") = 1)
+        .def("get_info", &GLADtoTEXT::get_info,
+             "Get model information");
 }

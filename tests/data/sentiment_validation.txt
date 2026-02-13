@@ -1,0 +1,15 @@
+__positive Wonderful experience that I will never forget
+__positive Great movie with excellent performances
+__positive Loved every second of this amazing film
+__positive Fantastic storytelling and beautiful visuals
+__positive Highly recommend this outstanding movie
+__negative Terrible waste of time and money
+__negative Boring and poorly executed film
+__negative Awful movie that I regret watching
+__negative Disappointing and frustrating experience
+__negative Horrible film with no redeeming value
+__neutral Okay movie, nothing particularly special
+__neutral Average film with mixed results
+__neutral Decent but not memorable
+__neutral Fair entertainment value
+__neutral Neither good nor bad, just okay

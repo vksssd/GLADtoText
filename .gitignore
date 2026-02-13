@@ -4,18 +4,18 @@ gladtotext-infer
 gladtotext-compact
 gladtotext-compact-infer
 gladtotext-tiny
+model-size-calculator
 
 # Test binaries
-tests/t1
-tests/t2
-tests/t3
-tests/t4
-tests/t5
-tests/test_*
-!tests/test_*.cpp
+tests/unit/t1
+tests/unit/t2
+tests/unit/t3
+tests/unit/t4
+tests/unit/t5
 
 # Model files
 *.bin
+*.config
 
 # Object files
 *.o
@@ -26,20 +26,12 @@ tests/test_*
 *.exe
 *.app
 
-# Training/test data files
-*.txt
-!README*.txt
-
-# Demo/temporary files
+# Training/test data files (but keep example data in tests/)
 demo_*.txt
-demo_*.bin
 sample_*.txt
 test_*.txt
-test_*.bin
 compare_*.txt
-compare_*.bin
 compact_*.txt
-compact_*.bin
 large_corpus.txt
 classification_data.txt
 
@@ -49,18 +41,19 @@ classification_data.txt
 *.swp
 *.swo
 *~
-.DS_Store
 
 # Build artifacts
 build/
 dist/
 *.dSYM/
 
-# Python cache (if any Python tools added)
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
+*.egg-info/
+.eggs/
 
 # Logs
 *.log

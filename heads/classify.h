@@ -1,6 +1,7 @@
 #pragma once
 #include "../core/matrix.h"
 #include "../model/backbone.h"
+#include "../model/sentence_encoder.h"
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
@@ -134,6 +135,143 @@ public:
         return loss;
     }
     
+    // Train with sentence encoding (includes backprop to sentence encoder)
+    float trainExampleWithSentence(const std::vector<Vector>& word_embeddings,
+                                   const std::vector<std::vector<int>>& word_ids,
+                                   SentenceEncoder* sentEnc,
+                                   int label) {
+        if (label < 0 || label >= num_classes) {
+            return 0.0f;
+        }
+        if (word_embeddings.empty()) {
+            return 0.0f;
+        }
+
+        // Forward pass through sentence encoder
+        Vector h = sentEnc->encode(word_embeddings);
+
+        // Compute scores
+        std::vector<float> scores(num_classes);
+        for (int k = 0; k < num_classes; k++) {
+            scores[k] = prototypes.row(k).dot(h);
+        }
+        scores[label] -= margin;
+
+        // Numerically stable loss
+        float maxScore = *std::max_element(scores.begin(), scores.end());
+        float denom = 0.0f;
+        for (float s : scores) {
+            denom += std::exp(s - maxScore);
+        }
+        float loss = -scores[label] + maxScore + std::log(denom);
+
+        // Compute gradient wrt sentence vector
+        Vector grad_h(dim);
+        grad_h.zero();
+        
+        for (int k = 0; k < num_classes; k++) {
+            float pk = std::exp(scores[k] - maxScore) / denom;
+            float grad = (k == label ? pk - 1.0f : pk);
+            grad = std::max(-5.0f, std::min(5.0f, grad));
+
+            // Update prototype
+            Vector grad_p = h;
+            grad_p.scale(-lr * grad);
+            prototypes.addRow(grad_p, k, 1.0f);
+
+            // Accumulate gradient for sentence vector
+            Vector proto_grad = prototypes.row(k);
+            proto_grad.scale(-lr * grad);
+            grad_h.add(proto_grad);
+        }
+
+        // Backprop through sentence encoder
+        sentEnc->update(word_embeddings, grad_h, lr);
+        
+        // Backprop to word embeddings (through backbone)
+        for (size_t i = 0; i < word_ids.size(); i++) {
+            if (!word_ids[i].empty()) {
+                backpropToBackbone(word_ids[i], grad_h);
+            }
+        }
+
+        return loss;
+    }
+    
+    // Batch training with subword IDs (processes batch sequentially)
+    float trainBatch(const std::vector<std::vector<int>>& batch_ids, 
+                     const std::vector<int>& batch_labels) {
+        int batchSize = batch_ids.size();
+        if (batchSize == 0 || batchSize != static_cast<int>(batch_labels.size())) {
+            return 0.0f;
+        }
+
+        float totalLoss = 0.0f;
+        int validExamples = 0;
+
+        for (int i = 0; i < batchSize; i++) {
+            if (!batch_ids[i].empty() && batch_labels[i] >= 0 && batch_labels[i] < num_classes) {
+                float loss = trainExample(batch_ids[i], batch_labels[i]);
+                totalLoss += loss;
+                validExamples++;
+            }
+        }
+
+        return validExamples > 0 ? (totalLoss / validExamples) : 0.0f;
+    }
+
+    // Batch training with pre-computed vectors (processes batch sequentially)
+    float trainBatchWithVectors(const std::vector<Vector>& batch_h, 
+                                const std::vector<int>& batch_labels) {
+        int batchSize = batch_h.size();
+        if (batchSize == 0 || batchSize != static_cast<int>(batch_labels.size())) {
+            return 0.0f;
+        }
+
+        float totalLoss = 0.0f;
+        int validExamples = 0;
+
+        for (int i = 0; i < batchSize; i++) {
+            if (batch_labels[i] >= 0 && batch_labels[i] < num_classes) {
+                float loss = trainExampleWithVector(batch_h[i], batch_labels[i]);
+                totalLoss += loss;
+                validExamples++;
+            }
+        }
+
+        return validExamples > 0 ? (totalLoss / validExamples) : 0.0f;
+    }
+    
+    // Batch training with sentence encoding (includes backprop)
+    float trainBatchWithSentences(const std::vector<std::vector<Vector>>& batch_word_embeddings,
+                                  const std::vector<std::vector<std::vector<int>>>& batch_word_ids,
+                                  SentenceEncoder* sentEnc,
+                                  const std::vector<int>& batch_labels) {
+        int batchSize = batch_word_embeddings.size();
+        if (batchSize == 0 || batchSize != static_cast<int>(batch_labels.size())) {
+            return 0.0f;
+        }
+
+        float totalLoss = 0.0f;
+        int validExamples = 0;
+
+        for (int i = 0; i < batchSize; i++) {
+            if (batch_labels[i] >= 0 && batch_labels[i] < num_classes && 
+                !batch_word_embeddings[i].empty()) {
+                float loss = trainExampleWithSentence(
+                    batch_word_embeddings[i],
+                    batch_word_ids[i],
+                    sentEnc,
+                    batch_labels[i]
+                );
+                totalLoss += loss;
+                validExamples++;
+            }
+        }
+
+        return validExamples > 0 ? (totalLoss / validExamples) : 0.0f;
+    }
+    
     // Predict with scores
     std::vector<std::pair<int, float>> predictTopK(const Vector& h, int k = 1) const {
         std::vector<std::pair<int, float>> results;
@@ -157,6 +295,7 @@ public:
 private:
     void backpropToBackbone(const std::vector<int>& ids, const Vector& grad_h) {
         // Distribute gradient through attention and embeddings
+        // NOTE: grad_h is already scaled by learning rate in trainExample
         for (int id : ids) {
             if (id < 0) continue;  // Skip invalid IDs
             
@@ -170,12 +309,13 @@ private:
                 float da = a * (1.0f - a);
 
                 // Update attention with gradient clipping
-                float grad_att = lr * grad_h.v[d] * e.v[d] * da;
+                // grad_h is already scaled by lr, so don't multiply by lr again
+                float grad_att = grad_h.v[d] * e.v[d] * da;
                 grad_att = std::max(-1.0f, std::min(1.0f, grad_att));
                 backbone->attention->w.v[d] += grad_att;
 
                 // Update embedding with gradient clipping
-                float grad_emb = lr * grad_h.v[d] * (a + e.v[d] * da * backbone->attention->w.v[d]);
+                float grad_emb = grad_h.v[d] * (a + e.v[d] * da * backbone->attention->w.v[d]);
                 grad_emb = std::max(-1.0f, std::min(1.0f, grad_emb));
                 backbone->embeddings->E.w[id * dim + d] += grad_emb;
             }

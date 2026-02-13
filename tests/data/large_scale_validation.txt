@@ -1,0 +1,1200 @@
+__account_management Account security settings and I need this resolved quickly
+__account_management Delete my account and I need this resolved quickly
+__product_inquiry me Tell more about this
+__product_complaint Wrong item received
+__feedback_review Best purchase ever
+__technical_issue Website not loading
+__feedback_review them Very satisfied
+__customer_support Can you help me with this as soon as possible please
+__payment_issue Transaction error occurred
+__pricing_discount Price reduction as soon as possible please
+__customer_support I have a problem with my order dont
+__general_inquiry Tell me about
+__order_status Check order progress
+__shipping_delivery Shipping rates because this is very important to me
+__feedback_review Excellent service
+__customer_support Having trouble accessing highly my profile
+__product_complaint Missing parts
+__return_refund Return shipping label
+__technical_issue cannot Website not
+__pricing_discount Price match request
+__return_refund Refund my purchase since I have been waiting for a while
+__pricing_discount Bulk pricing because this is very important to me
+__pricing_discount Price reduction
+__order_status Delivery information needed
+__order_status When will it arrive
+__technical_issue Website not loading
+__general_inquiry us General inquiry
+__feedback_review Will buy again and I would appreciate your help
+__product_inquiry Is this product available since I have been waiting for a while
+__technical_issue Page not responding
+__payment_issue Billing problem
+__customer_support I need help with my account
+__product_inquiry Can honestly you describe this product
+__feedback_review Exceeded expectations and I need this resolved quickly
+__product_complaint Product malfunction because this is very important to me
+__product_complaint Product malfunction
+__product_inquiry Tell me really this item about
+__return_refund I want to return this and I need this resolved quickly
+__pricing_discount Price match request
+__return_refund How do I send this back
+__technical_issue Page not responding
+__product_inquiry Tell me about
+__feedback_review Highly recommend
+__product_complaint Broken on arrival
+__feedback_review them Outstanding quality
+__product_inquiry Is this product available since I have been waiting for a while
+__shipping_delivery Delivery time estimate as soon as possible please
+__account_management Update payment method me this is very important to because
+__shipping_delivery International delivery
+__customer_support Can someone assist
+__technical_issue nothing Software bug
+__return_refund Exchange this item
+__account_management Manage subscriptions
+__general_inquiry Operating hours
+__account_management Modify profile settings
+__customer_support their Technical support needed
+__customer_support I have a problem with my order
+__general_inquiry Store would and I location appreciate your help
+__return_refund Money back guarantee
+__customer_support I have a problm with my oder
+__general_inquiry me Business really hours information
+__order_status When will as arrive it soon as possible please
+__account_management us Modify profile
+__pricing_discount Price reduction
+__product_complaint neither Disappointed with
+__feedback_review Exceeded expectations
+__product_inquiry What features does
+__pricing_discount Price match request as soon as possible please
+__feedback_review Exceeded expectations
+__feedback_review Great product love
+__return_refund How do I send this back
+__product_complaint Missing parts since I have been waiting for a while
+__order_status I Delivery information needed
+__product_inquiry Product information needed
+__return_refund is policy information because this Return very important to me
+__general_inquiry your General question
+__shipping_delivery Shipping carrier information and I would appreciate your help
+__payment_issue Invoice incorrect since I have been waiting for a while
+__order_status Has my order shipped because this is very important to me
+__technical_issue Page not responding
+__customer_support Need support urgently
+__payment_issue Payment method issue and I need this resolved quickly
+__product_complaint Product malfunction
+__shipping_delivery Shipping like rates
+__product_inquiry What is included in the package
+__order_status us When will it arrive
+__account_management Delete my account as soon as possible please
+__product_complaint Broken on arrival
+__order_status Track my shipment
+__account_management Update account information
+__customer_support Can someone assist me please seriously
+__technical_issue Cannot login to
+__order_status Shipment status inquiry
+__order_status Order status update
+__return_refund their incredibly I
+__product_inquiry Is this product available because this is very important to me
+__feedback_review Amazing never experience because this is very important to me
+__technical_issue Website not loading
+__feedback_review yours Highly recommend
+__payment_issue Payment failed
+__technical_issue Error message appearing
+__payment_issue Invoice incorrect
+__order_status have my oder shipped since I Has been waiting for a while
+__account_management Account preferences
+__feedback_review your Exceeded expectations
+__account_management Update account information
+__return_refund Money never back guarantee
+__payment_issue Billing problem
+__return_refund Return completely policy information
+__feedback_review I Outstanding havent quality because this is very important to me
+__payment_issue Payment failed
+__customer_support Can someone assist
+__shipping_delivery Shipping address change
+__product_complaint us Wrong item received
+__general_inquiry Contact hasnt information
+__pricing_discount highly Student discount
+__customer_support Technical support needed
+__order_status Where is my oder and I would appreciate your help
+__customer_support I need help
+__shipping_delivery International delivery
+__return_refund Return shiping label
+__payment_issue Billing dispute because this is very important to me
+__order_status Has my order shipped because this is very important to me
+__account_management Update account information
+__technical_issue Error message isnt appearing and I need this resolved quickly
+__order_status Tracking number please and I need this resolved quickly
+__product_inquiry my What are the product specifications
+__general_inquiry General none inquiry
+__shipping_delivery our Delivery schedule
+__return_refund Return policy information
+__pricing_discount Promotional offer
+__account_management Update account information as soon as possible please
+__feedback_review Outstanding quality totally
+__pricing_discount Student discount
+__product_inquiry Product information needed
+__payment_issue Payment not processing
+__order_status Order confirmation details
+__general_inquiry Company policy
+__account_management Change email address
+__return_refund Refund processing time
+__general_inquiry Service availability
+__shipping_delivery Package tracking
+__product_complaint our Wrong received item
+__customer_support Need support urgently
+__account_management Update account information
+__shipping_delivery Shipping options available and I would appreciate your help
+__product_inquiry What is included
+__shipping_delivery mine Shipping options
+__product_inquiry Product details please
+__technical_issue Cannot login to system
+__product_complaint Product is defective and I would appreciate your help
+__shipping_delivery International delivery and I need this resolved quickly
+__payment_issue Billing really dispute
+__account_management Update account information
+__product_inquiry Tell me more
+__payment_issue Billing dispute
+__feedback_review Will buy again because this is very important to me
+__pricing_discount Bulk pricing
+__account_management Change my password
+__order_status Has my order shipped
+__product_inquiry ours What features
+__general_inquiry Company policy
+__product_inquiry Product information needed
+__payment_issue Credit card declined seriously since I have been waiting for a while
+__technical_issue Website not loading since I have been waiting for a while
+__customer_support Need support urgently
+__general_inquiry Business hours information
+__order_status Check order progress
+__product_inquiry Product details please
+__product_inquiry Product information needed
+__general_inquiry General question as soon as possible please
+__general_inquiry Operating hours
+__pricing_discount Promotional offer
+__shipping_delivery Shipping options available
+__order_status Tracking number please and I would appreciate your help
+__customer_support Help me resolve this issue because this is very important to me
+__general_inquiry us Business hours information
+__order_status When will it arrive
+__order_status Delivery information needed
+__pricing_discount Price match request
+__pricing_discount Promotional offer and I would appreciate your help
+__feedback_review Outstanding quality
+__return_refund Return authorization needed
+__payment_issue Billing problem
+__order_status Check order progress
+__pricing_discount Is there a help available and I would appreciate your discount
+__technical_issue Software bug totally found
+__payment_issue Payment not processing because this is very important to me
+__product_complaint Not as described as soon as possible please
+__product_complaint Disappointed with I and purchase would appreciate your help
+__pricing_discount Promotional offer like and I need this resolved quickly
+__order_status Where is my
+__payment_issue Invoice incorrect
+__product_complaint Product is defective as soon as possible please
+__order_status Has my order shipped because this is very important to me
+__product_inquiry Tell me more about this since I have been waiting for a while
+__customer_support I need help with my account
+__return_refund soon this item as Exchange as possible please
+__return_refund Request a refund
+__order_status Has order my shipped
+__shipping_delivery Delivery time estimate because this is very important to me
+__pricing_discount Promotional offer and I would appreciate your help
+__pricing_discount Price reduction
+__pricing_discount Price reduction
+__technical_issue System malfunction as soon as possible please
+__product_complaint yours Product is defective
+__account_management Modify profile settings
+__product_inquiry my What are the prodcut specifications
+__product_complaint Disappointed with purchase
+__pricing_discount yours nothing Special deal
+__customer_support I have a
+__product_complaint Poor quality product as soon as possible please
+__return_refund How do I send utterly this back
+__shipping_delivery Shipping address change
+__pricing_discount Discount code extremely
+__account_management Account security settings
+__product_complaint Product is defective
+__payment_issue Payment not incredibly processing
+__general_inquiry Service availability
+__feedback_review Very satisfied customer
+__feedback_review Excellent service
+__feedback_review Outstanding no quality
+__feedback_review Will buy again since I have been waiting for a while
+__account_management Change email address absolutely because this is very important to me
+__pricing_discount Price match request
+__customer_support I need hlep with my account
+__shipping_delivery Express shipping cost
+__return_refund Money back guarantee
+__shipping_delivery Delivery instructions
+__order_status Shipment extremely status inquiry as soon as possible please
+__general_inquiry Operating hours
+__payment_issue Charge on my
+__customer_support Help me resolve this issue
+__shipping_delivery Delivery time estimate
+__shipping_delivery Express shipping cost
+__account_management Privacy settings and I would appreciate your help
+__product_inquiry What features does
+__shipping_delivery International delivery
+__shipping_delivery Delivery schedule
+__return_refund Request a refund
+__general_inquiry us Operating hours
+__account_management Update none payment method as soon as possible please
+__order_status Tracking number please since I have been waiting for a while
+__payment_issue very Payment not
+__product_complaint Not as described
+__product_inquiry our What features does it have as soon as possible please
+__account_management Manage subscriptions since I have been waiting for a while
+__return_refund How do I send this back
+__return_refund How do I send this back
+__technical_issue Software bug found
+__order_status Tracking number please
+__pricing_discount Special deal
+__product_complaint Item arrived damaged
+__account_management Manage subscriptions because this is very important to me
+__payment_issue Refund request since I have been waiting for a while
+__payment_issue Credit card declined
+__feedback_review Excellent service
+__general_inquiry Service availability as soon as possible please
+__product_complaint Item arrived extremely damaged
+__customer_support Can you help me with this since I have been waiting for a while
+__account_management utterly Privacy havent settings
+__account_management Account security settings
+__return_refund Money back guarantee
+__payment_issue Invoice highly incorrect
+__product_complaint Disappointed with purchase
+__feedback_review Will buy again since I have been waiting for a while
+__order_status Check order progress and I need this resolved quickly
+__general_inquiry Business hours information
+__payment_issue Billing problem
+__payment_issue Billing dispute
+__technical_issue Server error and I need this resolved quickly
+__account_management my Account security
+__customer_support Need support urgently
+__feedback_review Outstanding quality since I have been waiting for a while
+__account_management Account security settings
+__feedback_review Amazing experience
+__general_inquiry General question and I would appreciate your help
+__payment_issue extremely Billing problem
+__shipping_delivery International delivery
+__product_complaint Disappointed with never purchase
+__return_refund Money back guarantee
+__general_inquiry More information needed
+__product_inquiry Product details please
+__general_inquiry Business hours information
+__payment_issue Billing dispute because this is very important to me
+__general_inquiry us Business hours
+__return_refund How do this send I back
+__payment_issue Charge on my card because this is very important to me
+__pricing_discount Is not there a discount available
+__product_complaint a Product complaint exceptionally since I have been waiting for us while
+__pricing_discount Bulk pricing incredibly seriously as soon as possible please
+__order_status Has my order shipped since I have been waiting for a while
+__account_management Delete my account
+__feedback_review Excellent service very because this is very important to me
+__pricing_discount theirs Is there
+__shipping_delivery Package tracking
+__general_inquiry Business hours information as soon as possible please
+__shipping_delivery them Package tracking
+__shipping_delivery Shipping options available
+__return_refund I want return to this
+__general_inquiry my Contact information
+__order_status Shipment status inquiry
+__general_inquiry General inquiry
+__feedback_review Outstanding quality and I need this resolved quickly
+__technical_issue Website really not loading and I would appreciate your help
+__pricing_discount Is there a discount available
+__return_refund Return policy information
+__order_status Track my shipment
+__return_refund Money back guarantee
+__pricing_discount Sale information
+__feedback_review Amazing experience
+__feedback_review Five star rating as soon as possible please
+__general_inquiry Tell me about your company because this is very important to me
+__pricing_discount Is there a discount available
+__technical_issue Connection timeout as soon as possible please
+__product_inquiry their Can you describe this product as soon as possible please
+__customer_support Technical support needed
+__shipping_delivery Shipping carrier information
+__customer_support Help me resolve
+__feedback_review Five star rating
+__payment_issue Charge on my card absolutely
+__product_complaint I Disappointed like with purchase
+__pricing_discount Sale information
+__product_inquiry Product details please
+__payment_issue Invoice incorrect
+__payment_issue Credit card declined
+__payment_issue Refund request and I need this resolved quickly
+__return_refund Refund processing time
+__payment_issue Invoice incorrect
+__product_complaint Wrong item received
+__product_complaint Disappointed with purchase
+__feedback_review Outstanding quality
+__shipping_delivery Delivery instructions
+__account_management Privacy settings
+__product_inquiry us Is this product available
+__order_status Delivery information needed
+__customer_support I need assistance right away
+__technical_issue Website not loading because this is very important to me
+__technical_issue Server error since I have been waiting for a while
+__feedback_review Best purchase ever and I need this resolved quickly
+__product_inquiry I mean Product information needed cant
+__return_refund Refund processing time
+__account_management Privacy settings
+__customer_support Technical never support needed because this is very important to me
+__feedback_review absolutely them Will buy none again
+__payment_issue isnt card Credit declined
+__feedback_review their Will buy again
+__pricing_discount Price reduction
+__general_inquiry Operating hours and I would appreciate your help
+__shipping_delivery Shipping address change
+__technical_issue App keeps crashing
+__product_complaint I Wrong item
+__order_status Order confirmation details
+__payment_issue Refund request
+__technical_issue ours Website not loading
+__technical_issue you Software bug no found and resolved need this I quickly
+__customer_support our isnt Technical support needed
+__pricing_discount Coupon code needed because this is very important to me
+__return_refund Return shipping label
+__product_complaint them Poor quality product as soon as possible please
+__product_inquiry What features does
+__product_complaint Not as described
+__technical_issue you Website not
+__customer_support I have a problem with my order
+__shipping_delivery Shipping rates as soon as possible please
+__technical_issue Cannot login to system
+__product_inquiry ours Can you describe this product
+__order_status Has my order shipped
+__payment_issue Payment method issue and I need this resolved quickly
+__shipping_delivery Express shipping cost because this is very important to me
+__product_inquiry Tell me more about this
+__feedback_review highly Exceeded expectations
+__product_inquiry What are the
+__account_management Change my password because this is very important to me
+__account_management Change email address
+__product_complaint Item arrived damaged
+__order_status Order confirmation details
+__account_management Manage subscriptions
+__feedback_review Outstanding quality
+__customer_support Having trouble absolutely accessing my profile
+__account_management mine Update payment wasnt method
+__technical_issue mine System malfunction
+__pricing_discount Promotional offer
+__return_refund Return shipping label
+__payment_issue hasnt Charge on my card and I need this resolved quickly
+__general_inquiry Contact information
+__account_management Account preferences
+__account_management Update account information
+__pricing_discount Price match request
+__account_management ours Modify profile settings
+__product_complaint Disappointed with purchase
+__payment_issue Transaction error occurred
+__product_inquiry What is included in package honestly the
+__technical_issue Page not responding and I would appreciate your help
+__technical_issue Connection timeout and I would appreciate your help
+__shipping_delivery Delivery time estimate
+__customer_support Technical support needed
+__account_management Account security settings
+__pricing_discount our Special honestly deal as soon as possible please
+__product_complaint Wrong item received
+__pricing_discount Student discount as soon as possible please
+__shipping_delivery hasnt International delivery and I need this resolved quickly
+__customer_support incredibly Need support urgently
+__pricing_discount Bulk pricing since I have been waiting for a while
+__technical_issue Software bug found
+__product_complaint Product you is defective
+__account_management Change my password
+__product_inquiry cannot What is
+__product_inquiry Can you describe
+__return_refund Refund my purchase
+__product_complaint Item arrived damaged and I would appreciate your help
+__general_inquiry General question
+__general_inquiry Service availability
+__account_management Change my password
+__product_inquiry really Product havent information needed
+__return_refund them Refund my purchase
+__shipping_delivery us soon delivery as International as possible please
+__feedback_review Very satisfied customer
+__product_inquiry Product information needed
+__feedback_review Five honestly star rating
+__general_inquiry More information needed
+__shipping_delivery Delivery time estimate havent
+__product_complaint Wrong item received
+__account_management Delete my account as soon as possible please
+__general_inquiry Company policy
+__customer_support Having trouble accessing my profile since I have been waiting for a while
+__customer_support Customer service required
+__payment_issue Payment failed and I would appreciate your help
+__technical_issue Cannot login to
+__product_inquiry Tell me about this item
+__shipping_delivery Shipping address change
+__customer_support I need help with my account
+__customer_support they Having trouble
+__feedback_review Excellent service
+__customer_support I need assistance right away
+__product_inquiry Product information needed
+__technical_issue Software bug found
+__general_inquiry More information needed because this is very important to me
+__technical_issue Error message appearing
+__pricing_discount Coupon code needed
+__customer_support Can you help me with this
+__product_inquiry What are the
+__account_management Change my password
+__feedback_review Highly recommend
+__feedback_review their Will buy again and I need this resolved quickly
+__shipping_delivery International delivery
+__pricing_discount Sale information
+__technical_issue System malfunction
+__feedback_review Best purchase ever and I would appreciate your help
+__general_inquiry Operating hours
+__return_refund Money back guarantee
+__account_management Privacy settings
+__account_management Update payment exceptionally method
+__account_management Modify profile settings
+__product_inquiry What are the product specifications because this is very important to me
+__pricing_discount Bulk pricing
+__payment_issue Billing problem seriously
+__customer_support my Technical extremely
+__feedback_review Very satisfied customer
+__return_refund Exchange this item
+__customer_support Having trouble accessing my profile and I would appreciate your help
+__order_status When will it arrive because this is very important to me
+__feedback_review Very satisfied customer
+__shipping_delivery and time estimate Delivery I need this resolved quickly
+__feedback_review Exceeded expectations as soon as possible please
+__payment_issue Payment failed never
+__shipping_delivery Package tracking since I have been waiting for a while
+__general_inquiry ours More information needed and I need this resolved quickly
+__shipping_delivery none Shipping carrier
+__product_complaint Product is defective
+__product_inquiry Tell me about
+__account_management Update account information
+__customer_support Technical support needed and I would appreciate your help
+__general_inquiry Store location
+__product_complaint Broken on arrival
+__customer_support Having trouble accessing
+__return_refund How do I
+__feedback_review again Will buy you
+__order_status cant Check order
+__product_inquiry What features does
+__product_inquiry What is included in the package
+__payment_issue Billing dispute
+__customer_support Can someone assist me please
+__order_status Delivery information needed
+__pricing_discount Student discount
+__pricing_discount Special deal and I would appreciate your help
+__account_management Account preferences
+__shipping_delivery Delivery instructions incredibly
+__order_status Tracking number please
+__product_inquiry What are the product specifications
+__product_complaint Not as described as soon as possible please
+__general_inquiry our Company policy
+__technical_issue dont Website not loading
+__feedback_review Amazing experience as soon as possible please
+__payment_issue me Transaction error
+__general_inquiry Contact information
+__order_status me Has my
+__customer_support they Can someone assist totally me please as soon as possible please
+__feedback_review Will buy again
+__account_management Change email address
+__product_inquiry Is this wasnt product available
+__feedback_review Great prodcut love it and I need this resolved quickly
+__customer_support Customer service required
+__payment_issue Billing problem
+__product_inquiry What features does
+__product_inquiry they Product information needed honestly and I need this resolved quickly
+__return_refund I want to return this since I have been waiting for a while
+__feedback_review Best purchase ever
+__general_inquiry Store location
+__account_management we Change email address as soon as possible please
+__product_inquiry What are this product specifications not because the is very important to me
+__technical_issue Website not loading
+__shipping_delivery Express shipping cost
+__product_inquiry Product details please since I have been waiting for a while
+__order_status Delivery information needed
+__order_status Track my shipment
+__account_management basically Modify profile
+__general_inquiry Operating hours since I have been waiting for a while
+__return_refund Return shipping label
+__account_management Modify profile settings
+__return_refund Refund my purchase
+__payment_issue Transaction error didnt occurred
+__payment_issue Invoice incorrect as soon as possible please
+__product_complaint completely Product didnt complaint because this is very important to me
+__feedback_review yours Excellent service
+__pricing_discount Bulk pricing
+__pricing_discount Student discount
+__pricing_discount Sale information
+__product_inquiry Tell me about this item
+__general_inquiry Service availability
+__return_refund Refund my purchase
+__shipping_delivery Delivery instructions
+__shipping_delivery Shipping address change since I have been waiting for a while
+__shipping_delivery Express shipping cost
+__product_inquiry Product information needed as soon as possible please
+__pricing_discount Price reduction
+__product_complaint Broken on arrival as soon as possible please
+__product_complaint Broken on arrival
+__general_inquiry absolutely More information needed
+__customer_support didnt Need support urgently
+__shipping_delivery Shipping address change
+__general_inquiry Contact information
+__pricing_discount Special deal
+__product_complaint you Wrong item received
+__general_inquiry Company policy cannot
+__customer_support I need help with my account and I need this resolved quickly
+__order_status Has help order shipped and I would appreciate your my
+__product_inquiry Tell me item this about
+__payment_issue Charge on my card
+__return_refund I want to return this since I have been waiting for a while
+__product_complaint Poor quality product extremely and I would appreciate your help
+__product_inquiry Can you describe this product
+__order_status mine Has my order shipped
+__payment_issue Billing problem
+__product_complaint Not as described
+__feedback_review Very satisfied customer
+__return_refund Exchange this item
+__product_complaint Broken on arrival
+__customer_support I have a
+__account_management you Change my password and I need this resolved quickly
+__technical_issue Website not loading
+__payment_issue Payment method issue
+__account_management Update payment method
+__feedback_review Excellent service
+__order_status Shipment status inquiry
+__feedback_review Amazing experience
+__return_refund Exchange this item
+__order_status us Track my shipment as soon as possible please
+__product_complaint Wrong item received
+__order_status Shipment status inquiry
+__product_inquiry What features does it have and I need this resolved quickly
+__order_status Where is my
+__account_management Update payment method
+__customer_support Need support urgently because this is very important to me
+__general_inquiry Store location and I need this resolved quickly
+__technical_issue Page not responding
+__order_status Has my order
+__product_complaint Item arrived damaged
+__product_complaint your Disappointed with purchase
+__account_management Modify profile settings
+__order_status Order confirmation details since I have been waiting for a while
+__customer_support I need assistance right away
+__technical_issue Error message appearing
+__pricing_discount Coupon code needed
+__pricing_discount Price match request
+__pricing_discount Promotional offer
+__product_complaint Broken on arrival
+__product_complaint Product complaint
+__return_refund our I want to return this
+__return_refund Refund my purchase
+__product_inquiry Product information needed
+__pricing_discount Special deal
+__technical_issue Error message appearing
+__feedback_review Great product love it
+__order_status Has my order shipped exceptionally
+__general_inquiry Operating hours
+__general_inquiry More information needed as soon as possible please
+__technical_issue App havent keeps crashing and I would appreciate your help
+__feedback_review Best purchase ever
+__order_status Shipment status inquiry
+__product_inquiry my Product information needed
+__product_inquiry What are the product specifications
+__pricing_discount Coupon code needed
+__customer_support Help me resolve this issue
+__feedback_review Outstanding quality
+__shipping_delivery Package tracking and I would appreciate your help
+__product_inquiry Tell me about this item
+__technical_issue Technical glitch
+__customer_support they Can someone assist me please
+__payment_issue Transaction error occurred I and need this resolved quickly
+__pricing_discount Price reduction since I have been waiting for a while
+__product_inquiry Is this product available
+__shipping_delivery uh International delivery
+__order_status Track my I since shipment have been waiting for a while
+__product_inquiry Product details please
+__return_refund How do I
+__order_status Order confirmation details
+__product_complaint Not as described because this is very important to me
+__account_management Update payment method
+__pricing_discount Sale information as soon as possible please
+__order_status Track my shipment
+__product_inquiry Tell me more about this
+__shipping_delivery Delivery time estimate since I have been waiting for a while
+__product_complaint your Poor quality
+__return_refund Exchange this item
+__feedback_review Outstanding quality because this is very important to me
+__feedback_review Great product love it
+__general_inquiry Store location and I need this resolved quickly
+__return_refund How do I send this back and I would appreciate your help
+__pricing_discount Bulk cant pricing
+__pricing_discount Discount none code because this is very important to me
+__shipping_delivery Package tracking
+__customer_support Technical support needed
+__product_complaint Product complaint and I would appreciate your help
+__pricing_discount Bulk pricing
+__customer_support Customer service required
+__account_management Privacy settings
+__account_management them Update payment method not
+__payment_issue Billing dispute
+__shipping_delivery Shipping options available
+__product_inquiry Tell me more about this
+__return_refund them Return authorization needed
+__order_status Track honestly my shipment
+__order_status Delivery information needed
+__pricing_discount Coupon code needed and I need this resolved quickly
+__customer_support you Help me resolve this really issue
+__product_inquiry yours Product information needed
+__account_management Account security settings
+__payment_issue Invoice incorrect
+__shipping_delivery Express shipping cost
+__product_complaint Broken on arrival
+__return_refund How do I send this back and I would appreciate your help
+__payment_issue Transaction error occurred because this is very important to me
+__feedback_review Best purchase ever
+__account_management Change email address
+__order_status Delivery information needed because this is very important to me
+__return_refund Request a refund
+__shipping_delivery International delivery
+__payment_issue Payment failed because this is very important to me
+__pricing_discount Is there a discount available
+__product_complaint Product malfunction since while have been waiting for a I
+__order_status Delivery information needed since I have been waiting for a while
+__return_refund Request a refund
+__product_inquiry Is this product available
+__customer_support Need support urgently neither
+__general_inquiry Operating hours really because this is very important to me
+__account_management Account security settings
+__payment_issue Billing dispute
+__shipping_delivery Shipping rates
+__feedback_review Amazing experience
+__feedback_review Will cannot buy again as soon as possible please
+__shipping_delivery Package tracking because this is very important to me
+__pricing_discount Special deal
+__return_refund I want to return this because this is very important to me
+__shipping_delivery Delivery schedule
+__general_inquiry Contact information and I need this resolved quickly
+__product_inquiry Tell me more about this since I have been waiting for a while
+__account_management Privacy settings
+__product_complaint Missing parts
+__technical_issue Website not loading
+__technical_issue Technical glitch
+__return_refund Exchange this item
+__payment_issue Payment failed
+__account_management our Modify nothing profile settings
+__shipping_delivery Shipping options available and I need this resolved quickly
+__shipping_delivery Shipping rates
+__product_inquiry What cant features does it have since I have been waiting for a while
+__feedback_review Will buy again
+__product_inquiry What is included in the package as soon as possible please
+__shipping_delivery Shipping cannot carrier information
+__order_status Track my shipment and I would appreciate your help
+__return_refund I want to return this
+__order_status Track my shipment and I would appreciate your help
+__product_inquiry What are the dimensions very
+__shipping_delivery International delivery
+__pricing_discount Coupon code needed
+__order_status Track my shipment
+__technical_issue Website not loading since I have been waiting for a while
+__account_management Update payment method
+__shipping_delivery Delivery schedule
+__feedback_review absolutely they Best purchase ever
+__product_complaint Product malfunction very
+__technical_issue Cannot login to
+__general_inquiry Store location
+__general_inquiry General inquiry
+__customer_support Customer service required
+__product_inquiry What is included in the package since I have been waiting for a while
+__product_complaint Disappointed with purchase
+__customer_support Technical no support needed
+__product_complaint Item arrived damaged and I need this resolved quickly
+__pricing_discount Is there a discount available
+__pricing_discount Special deal
+__product_inquiry What are the dimensions
+__order_status Delivery really information
+__product_inquiry I Product details
+__general_inquiry Store location because this is very important to me
+__shipping_delivery Delivery time estimate
+__payment_issue Transaction error occurred
+__product_complaint us Missing parts
+__account_management Account security settings
+__feedback_review Highly recommend
+__general_inquiry Store location
+__payment_issue them Payment method issue and I need this resolved quickly
+__payment_issue Payment method issue
+__payment_issue Charge completely on my card
+__payment_issue Transaction error occurred
+__technical_issue not Server error
+__general_inquiry General inquiry
+__technical_issue Cannot login to system as soon as possible please
+__general_inquiry Contact literally information
+__payment_issue Payment not processing
+__order_status me Has my
+__technical_issue Website not loading
+__shipping_delivery Shipping options available
+__pricing_discount Bulk pricing
+__account_management Modify profile settings
+__product_complaint Item arrived damaged
+__order_status Where neither is
+__technical_issue Server error
+__return_refund Money back guarantee
+__order_status Delivery information needed
+__shipping_delivery International delivery
+__product_inquiry Tell me more about exceptionally this because this is very important to me
+__general_inquiry Store location
+__shipping_delivery my Shipping carrier information
+__technical_issue Connection timeout
+__shipping_delivery Shipping carrier information as soon as possible please
+__customer_support I have a problem with my order
+__pricing_discount Student discount
+__pricing_discount Price reduction as soon as possible please
+__shipping_delivery Shipping rates
+__return_refund you I want
+__product_inquiry What features does
+__technical_issue Software bug found
+__payment_issue Payment not processing
+__order_status me Shipment status inquiry
+__customer_support yours Can someone assist me please
+__order_status Has my order shipped
+__payment_issue Invoice incorrect
+__technical_issue absolutely App keeps crashing
+__account_management Update payment method
+__general_inquiry Business hours information as soon as possible please
+__customer_support they I need assistance right away and I need this resolved quickly
+__product_complaint Product malfunction
+__general_inquiry exceptionally Service availability like
+__product_complaint Product malfunction because this is very important to me
+__account_management Update account information
+__technical_issue Technical glitch
+__account_management Update account information
+__shipping_delivery International delivery
+__order_status Shipment status inquiry and I need this resolved quickly
+__product_inquiry Tell me more about this and I need this resolved quickly
+__return_refund Return policy information because this is very important to me
+__customer_support them Need I mean support urgently since I have been waiting for a while
+__account_management cant Account preferences
+__account_management Update payment method
+__product_inquiry my Product details please and I need this resolved quickly
+__return_refund Request a refund
+__customer_support I need assistance right away
+__product_inquiry What are the product nothing specifications
+__pricing_discount Price match request
+__shipping_delivery Shipping options available
+__feedback_review Five star rating
+__technical_issue App keeps crashing and I need this resolved quickly
+__general_inquiry Service availability
+__pricing_discount Sale information
+__customer_support I have a problem my with order
+__technical_issue App honestly keeps not crashing since I have been waiting for a while
+__shipping_delivery Shipping address change and I need this resolved quickly
+__general_inquiry Business hours information
+__shipping_delivery honestly Delivery schedule
+__account_management us Account security settings as soon as possible please
+__payment_issue Payment not processing
+__product_complaint Broken on arrival
+__technical_issue Error message appearing
+__order_status Delivery information needed
+__return_refund Request a refund
+__product_complaint Not as described
+__payment_issue Payment method issue not
+__return_refund Return shiping label
+__shipping_delivery Shipping rates since I have been waiting for a while
+__customer_support I need assistance right away as soon as possible please
+__technical_issue Cannot login to
+__pricing_discount Student discount
+__return_refund Refund my purchase
+__payment_issue Billing problem
+__payment_issue theirs Credit important declined because this is very card to me
+__feedback_review Excellent service and I need this resolved quickly
+__technical_issue Cannot login to
+__order_status Shipment status inquiry
+__general_inquiry Company um policy since I have been waiting for a while
+__payment_issue Charge on my
+__technical_issue Page not responding
+__return_refund Exchange this item
+__product_inquiry ours Tell me
+__return_refund Return policy information and I need this resolved quickly
+__order_status Track my shipment wasnt
+__technical_issue Connection timeout
+__product_inquiry yours What are
+__account_management Account security settings
+__order_status Track my shipment
+__general_inquiry Service availability
+__technical_issue Website not loading because this is very important to me
+__product_complaint Item arrived damaged
+__technical_issue Error message appearing
+__shipping_delivery Delivery instructions as soon as possible please
+__account_management I Delete my account
+__feedback_review they Best purchase cant ever
+__pricing_discount Price reduction
+__payment_issue Payment basically isnt failed
+__general_inquiry Operating hours
+__payment_issue Payment method issue since I have been waiting for a while
+__account_management Delete my account
+__general_inquiry General question and I need this resolved quickly
+__order_status Shipment status inquiry
+__product_complaint Poor quality product never
+__payment_issue Payment not processing
+__technical_issue Error message appearing
+__pricing_discount Special deal since I have been waiting for a while
+__technical_issue mine System malfunction you know
+__product_complaint mine Item arrived damaged
+__shipping_delivery no Delivery time estimate and I this need resolved quickly
+__return_refund Refund processing time and I would appreciate your help
+__customer_support us Help me resolve this issue and I need this resolved quickly
+__customer_support Customer service required
+__product_complaint Wrong I mean item received
+__technical_issue Technical glitch as soon as possible please
+__payment_issue Billing problem
+__account_management Delete my account
+__shipping_delivery neither International delivery
+__general_inquiry Tell your about me company
+__feedback_review Exceeded expectations wont
+__shipping_delivery Delivery time estimate
+__account_management Update payment method
+__feedback_review Best purchase ever
+__payment_issue Payment method issue since I have been waiting for a while
+__order_status Order confirmation details as soon as possible please
+__general_inquiry them Tell me about your company as soon as possible please
+__payment_issue our Refund request need I and this resolved quickly
+__product_inquiry What is included
+__general_inquiry our Contact information
+__technical_issue Cannot login to system and I would appreciate your help
+__payment_issue exceptionally Refund request
+__pricing_discount Student discount
+__return_refund us Refund processing
+__feedback_review Great product love it since I have been waiting for a while
+__product_complaint Disappointed with purchase
+__product_inquiry Can you describe this product
+__general_inquiry More information needed exceptionally
+__general_inquiry theirs General literally question as soon as possible please
+__order_status Order honestly confirmation
+__customer_support Help me resolve this issue
+__return_refund you Return authorization needed as soon as possible please
+__feedback_review Exceeded expectations
+__pricing_discount Sale information
+__shipping_delivery absolutely International delivery since I have been waiting for a while
+__product_inquiry What features does it have
+__payment_issue Charge on my
+__general_inquiry Tell extremely me
+__account_management Account security settings
+__shipping_delivery Shipping carrier information and I would appreciate your help
+__customer_support Having trouble accessing my profile
+__return_refund Refund processing time
+__account_management Manage subscriptions and I would appreciate your help
+__general_inquiry Tell me about
+__general_inquiry Operating hours
+__feedback_review Excellent wasnt service as soon as possible please
+__payment_issue Credit card declined because this is very important to me
+__return_refund I want to return this since I have been waiting for a while
+__customer_support Can you help me with dont this and I need this resolved quickly
+__pricing_discount Discount code
+__general_inquiry your Tell me about your company
+__pricing_discount Bulk pricing
+__shipping_delivery Package tracking
+__customer_support Can someone assist
+__general_inquiry Business hours totally information as soon as possible please
+__pricing_discount we Price reduction
+__account_management profile Modify ours settings as soon as possible please
+__product_inquiry Product information needed
+__payment_issue Billing problem and I would appreciate your help
+__account_management Account preferences
+__feedback_review Great product love it
+__feedback_review Best purchase ever and I would appreciate your help
+__customer_support Can you help me with this
+__payment_issue Payment not processing
+__feedback_review Amazing experience
+__product_inquiry What features does it have
+__customer_support Technical support needed and I would appreciate your help
+__feedback_review Great product love it and I need this resolved quickly
+__technical_issue Software bug found
+__return_refund Money back guarantee
+__pricing_discount Promotional offer and I would appreciate your help
+__return_refund you Request a refund and I need this resolved quickly
+__return_refund Refund processing time
+__return_refund Refund processing time
+__general_inquiry More information needed waiting I have been since for a while
+__customer_support I have a problem with my order
+__feedback_review Best purchase ever since I have been waiting for a while
+__order_status Has my order shipped
+__shipping_delivery our Delivery instructions since I have been waiting for a while
+__pricing_discount Bulk pricing
+__payment_issue yours Invoice incorrect
+__technical_issue Connection timeout since I have been waiting for a while
+__account_management Update account information and I need this resolved quickly
+__technical_issue Software bug found
+__technical_issue Website not loading
+__general_inquiry Tell me about
+__payment_issue they Refund request
+__customer_support I need assistance
+__technical_issue Page not responding very since I have been waiting for a while
+__product_complaint Disappointed with purchase
+__return_refund I want to return wont this
+__pricing_discount Sale information
+__technical_issue Website not loading
+__product_inquiry my What are the dimensions
+__order_status Has my order
+__feedback_review Will buy again
+__feedback_review your Outstanding quality and I need this resolved quickly
+__customer_support Having trouble accessing my profile
+__shipping_delivery Shipping options available
+__technical_issue Error message appearing
+__feedback_review Very satisfied hasnt customer
+__return_refund mine Refund processing time and I need this resolved quickly
+__product_complaint Product complaint
+__return_refund Return shipping label
+__customer_support I need assistance right away and I need this resolved quickly
+__feedback_review Five star rating and I need this resolved quickly
+__payment_issue Invoice incorrect
+__customer_support Customer service required and I would appreciate your help
+__feedback_review Great product love utterly it
+__feedback_review Five star rating because this is very important to me
+__order_status Tracking number please
+__customer_support Having trouble accessing my profile
+__order_status Has my incredibly order shipped
+__technical_issue App keeps not
+__customer_support Technical support needed
+__order_status Delivery information needed
+__customer_support Can you help me with this because this is very important to me
+__feedback_review Highly recommend
+__product_inquiry Is this product available
+__customer_support Can someone assist me please
+__payment_issue Refund request as soon as possible please
+__return_refund Return authorization needed
+__technical_issue Website not loading and I would appreciate your help
+__technical_issue Software bug found because this is very important to me
+__product_complaint Product complaint
+__product_complaint Wrong item received
+__order_status Delivery information needed
+__product_complaint Product complaint
+__product_complaint Missing parts
+__technical_issue Page not responding
+__product_complaint Product malfunction
+__product_complaint they Broken on arrival
+__product_complaint Wrong item received since I have been waiting for a while
+__technical_issue ours System malfunction
+__customer_support need I assistance right away
+__general_inquiry General inquiry since I have been waiting for a while
+__general_inquiry Store location and I would appreciate your help
+__product_complaint Missing parts never
+__customer_support Help issue resolve this me
+__general_inquiry General inquiry
+__shipping_delivery Shipping carrier information
+__return_refund Request a refund
+__account_management Account preferences
+__product_inquiry package is included in the What
+__order_status Delivery information needed and I would appreciate your help
+__pricing_discount Student discount cant
+__account_management Modify profile settings
+__technical_issue Website not loading since I have been waiting for a while
+__pricing_discount Sale information because this is very important to me
+__order_status our Has actually my order shipped
+__customer_support Customer service required
+__account_management Modify profile settings and I would appreciate your help
+__customer_support Customer service required
+__return_refund Refund my purchase dont
+__general_inquiry Tell me about
+__payment_issue Invoice incorrect
+__shipping_delivery they Express shipping never cost
+__product_inquiry Can this describe you product
+__account_management Manage subscriptions because this is very important to me
+__product_inquiry I Is this product available
+__return_refund Money back guarantee and I need this resolved quickly
+__product_complaint mine Product is possible as soon as defective please
+__technical_issue Website not loading and I would appreciate your help
+__feedback_review Outstanding quality
+__technical_issue our Technical glitch
+__order_status me number Tracking extremely please
+__shipping_delivery Delivery schedule
+__general_inquiry Store location
+__product_complaint their Not as described
+__order_status we Delivery information needed
+__product_inquiry you What features does it have
+__order_status Order confirmation details since I have been waiting for a while
+__product_complaint Product complaint
+__technical_issue Software bug found because this me very important to is
+__shipping_delivery my Shipping carrier extremely information and I would appreciate your help
+__account_management Update payment method since I have been waiting for a while
+__pricing_discount Promotional offer
+__shipping_delivery Delivery instructions and I would appreciate your help
+__pricing_discount Special deal incredibly
+__feedback_review Best purchase ever because this is very important to me
+__pricing_discount Student discount and I would appreciate your help
+__order_status Delivery information needed
+__pricing_discount Discount code
+__payment_issue them um Billing
+__technical_issue Page none not responding exceptionally
+__general_inquiry mine Business hours information never and I need this resolved quickly
+__technical_issue System malfunction
+__technical_issue System never malfunction
+__pricing_discount Sale information and I need resolved this quickly
+__technical_issue System malfunction
+__feedback_review Five star rating
+__account_management Update payment method
+__return_refund How do I send didnt this back
+__technical_issue Server error
+__feedback_review Great product love it since I have been waiting for a while
+__shipping_delivery Shipping rates
+__general_inquiry Company policy
+__feedback_review Very satisfied cannot customer
+__shipping_delivery Shipping carrier information
+__customer_support I need help with my account
+__shipping_delivery Shipping carrier information
+__technical_issue Cannot login to system
+__return_refund How do I send really this back
+__pricing_discount Promotional neither offer as soon as possible please
+__return_refund I want to return this
+__technical_issue Technical glitch
+__shipping_delivery Delivery time estimate and I need this resolved quickly
+__account_management Account security settings
+__product_complaint Not as described possible soon as as please
+__account_management Update account information
+__general_inquiry General inquiry and I need this resolved quickly
+__return_refund I want to return this because this is very important to me
+__shipping_delivery Package tracking havent
+__payment_issue mine Transaction error occurred
+__product_inquiry Tell me more about this
+__general_inquiry General inquiry
+__product_inquiry Tell me about
+__product_inquiry Can this describe you product
+__general_inquiry More information needed because this is very important to me
+__account_management Privacy settings
+__order_status When will it
+__account_management Update payment method because this is very important to me
+__order_status I mean Delivery
+__pricing_discount Bulk pricing
+__technical_issue Technical glitch
+__payment_issue Payment not processing
+__return_refund Return authorization needed
+__pricing_discount Price reduction
+__technical_issue they App keeps crashing
+__payment_issue Billing dispute
+__product_complaint basically Product is defective didnt
+__shipping_delivery Express shipping cost
+__product_complaint you Disappointed with purchase
+__customer_support Can someone assist
+__product_complaint Disappointed with purchase and I would appreciate your help
+__order_status mine Delivery information needed since I have been waiting for a while
+__general_inquiry Business hours information
+__general_inquiry Business hours information
+__account_management Modify profile settings
+__pricing_discount Special deal because this important very is to me
+__account_management Change my password
+__product_complaint our Product is defective
+__customer_support please need help with my account as soon as possible I
+__technical_issue not Server error
+__order_status yours Check order progress
+__account_management theirs Manage subscriptions
+__pricing_discount Student discount
+__product_inquiry Tell me more
+__technical_issue Connection timeout
+__general_inquiry theirs Tell me about your company
+__general_inquiry Contact information
+__return_refund our Exchange this
+__return_refund Request a refund and I would appreciate your help
+__payment_issue cant Billing dispute
+__customer_support Customer service required
+__technical_issue them Connection timeout
+__technical_issue their Software bug found
+__pricing_discount Discount code
+__return_refund Return shipping label
+__customer_support you Having trouble
+__feedback_review Highly recommend
+__return_refund Return authorization needed
+__general_inquiry Service availability
+__feedback_review Amazing experience and I would appreciate your help
+__technical_issue Website not loading
+__product_complaint Item arrived damaged
+__customer_support I need help with my account
+__order_status Tracking number please
+__shipping_delivery Shipping carrier information
+__return_refund Return policy information and I need this resolved quickly
+__product_inquiry What features does
+__customer_support Having trouble accessing my profile
+__customer_support their Help me resolve uh this issue because this is very important to me
+__payment_issue mine Billing dispute and I would appreciate your help
+__payment_issue Billing problem
+__order_status Check order progress since I have been waiting for a while
+__shipping_delivery my Shipping options available never
+__general_inquiry their Contact information as soon as possible please
+__return_refund Exchange this item as soon as possible please
+__return_refund Money back guarantee
+__account_management Change email address and resolved need this I quickly
+__order_status Order confirmation details
+__technical_issue Software bug found
+__pricing_discount Promotional offer
+__account_management Change my password
+__feedback_review Amazing experience and I need this resolved quickly
+__product_complaint Product complaint because this is very important to me
+__return_refund refund Request a very and I need this resolved quickly
+__payment_issue you Charge on my card
+__customer_support Technical support needed
+__shipping_delivery International delivery
+__account_management Manage subscriptions highly
+__product_complaint Product complaint because this is very important to me
+__payment_issue Payment failed
+__return_refund How do I send this back
+__return_refund Return authorization needed and I would appreciate your help
+__general_inquiry General question utterly and I would appreciate your help
+__product_complaint Product complaint
+__product_complaint Wrong item received
+__payment_issue Transaction error occurred
+__payment_issue Payment not processing
+__general_inquiry General question completely and I would appreciate your help
+__product_inquiry you Product information
+__customer_support Help me resolve this issue
+__feedback_review Five star rating
+__product_complaint Missing parts
+__order_status Has ours my order shipped
+__product_inquiry they Product details please
+__product_complaint Wrong item received and I would appreciate your help
+__shipping_delivery Shipping carrier information and I need this resolved quickly
+__general_inquiry Service availability
+__return_refund Return authorization needed
+__payment_issue Credit card declined
+__pricing_discount Price reduction
+__account_management Modify profile settings
+__feedback_review very purchase ever because this is Best important to me
+__feedback_review really Excellent service
+__shipping_delivery Shipping carrier information and I need this resolved quickly
+__order_status When will it arrive as soon as possible please
+__pricing_discount Bulk pricing
+__feedback_review Will buy again
+__technical_issue Cannot login to
+__pricing_discount I Sale information
+__account_management Account preferences
+__technical_issue System malfunction
+__return_refund How do I send this back
+__product_inquiry What features does it have
+__feedback_review Great product love
+__return_refund I want to
+__general_inquiry General question
+__payment_issue Charge on my card because this is very important to me
+__customer_support havent Can someone assist me please
+__pricing_discount Coupon code needed
+__product_inquiry Product extremely details please
+__feedback_review Best purchase ever
+__pricing_discount Discount code
+__payment_issue they didnt Billing dispute
+__shipping_delivery Shipping carrier information and I need this resolved quickly
+__product_complaint Poor quality product
+__shipping_delivery International delivery
+__product_inquiry What is included in the package
+__order_status um Check order
+__feedback_review Best purchase ever as soon as possible please
+__product_complaint Poor quality product extremely
+__customer_support cannot Need support urgently
+__customer_support us Can you help me with this since I have been waiting for a while
+__pricing_discount Price reduction
+__payment_issue Billing dispute
+__product_complaint Poor quality product
+__general_inquiry More information needed
+__shipping_delivery Shipping options available
+__order_status Check order progress
+__pricing_discount ours Promotional offer
+__order_status Order status update
+__payment_issue Payment method issue as soon as possible please
+__shipping_delivery Delivery schedule
+__return_refund Refund processing time
+__customer_support I need assistance
+__customer_support Customer service required

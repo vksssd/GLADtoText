@@ -19,6 +19,10 @@ Production-ready text embedding and classification system with three approaches:
 
 ## 🚀 Quick Start
 
+**New to GLADtoTEXT?** See [GETTING_STARTED.md](GETTING_STARTED.md) for a 5-minute tutorial.
+
+### C++ (Command Line)
+
 ```bash
 # Build
 make all
@@ -29,6 +33,22 @@ make all
 # Predict
 echo "your text" | ./gladtotext-infer predict model.bin 1
 ```
+
+### Python
+
+```bash
+# Install
+pip install .
+
+# Use
+python3
+>>> import gladtotext
+>>> model = gladtotext.Model()
+>>> model.load_model("model.bin")
+>>> model.predict("your text", k=1)
+```
+
+See [PYTHON_GUIDE.md](PYTHON_GUIDE.md) for complete Python documentation.
 
 ## 📊 Three Approaches
 
@@ -57,10 +77,17 @@ echo "your text" | ./gladtotext-infer predict model.bin 1
 
 ## 📖 Documentation
 
-- **[GUIDE.md](GUIDE.md)** - Complete guide with examples
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development guide
+### User Guides
+- **[GUIDE.md](GUIDE.md)** - Complete training and usage guide
+- **[PYTHON_GUIDE.md](PYTHON_GUIDE.md)** - Python bindings guide
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Development guidelines
+
+### Examples & Tests
 - **[examples/](examples/)** - Working examples
 - **[tests/](tests/)** - Test suite
+
+### Technical Docs
+- **[docs/](docs/)** - Architecture, roadmap, and technical documentation
 
 ## 🎯 Example
 
@@ -104,10 +131,23 @@ make tiny
 ## 🧪 Testing
 
 ```bash
-make test              # All tests
-make test-unit         # Unit tests only
-make test-integration  # Integration tests only
+make test                # Unit + integration tests
+make test-unit           # Unit tests only
+make test-integration    # Integration tests only
+make test-comprehensive  # Comprehensive test suite (3 classes, 8 classes)
+make test-stress         # Stress test suite (10K examples, 12 classes)
+make test-all            # All tests (unit + integration + comprehensive + stress)
 ```
+
+### Stress Test Suite
+
+Comprehensive production validation with:
+- **10,000+ examples** across 12 real-world categories
+- **Edge cases** (typos, negations, special characters)
+- **Stress testing** (memory, concurrency, large batches)
+- **Robustness** (variations, tolerance)
+
+See [STRESS_TEST_SUITE.md](STRESS_TEST_SUITE.md) for details.
 
 ## 📈 Performance
 

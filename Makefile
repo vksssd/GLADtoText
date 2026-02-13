@@ -16,7 +16,7 @@ INTEGRATION_TESTS = tests/integration/test_full_pipeline.sh \
                     tests/integration/test_sentence_encoding.sh \
                     tests/integration/test_transfer_learning.sh
 
-.PHONY: all clean test test-unit test-integration install compact tiny tools examples
+.PHONY: all clean test test-unit test-integration test-comprehensive install compact tiny tools examples python python-install python-test
 
 all: $(TRAIN_BIN) $(INFER_BIN)
 
@@ -72,10 +72,24 @@ test-integration: all
 	@cd tests/integration && ./test_transfer_learning.sh
 	@echo "✓ All integration tests passed!"
 
+test-comprehensive: all
+	@echo "Running comprehensive test suite..."
+	@cd tests/comprehensive && bash run_all_tests.sh
+
+test-stress: all
+	@echo "Running stress test suite..."
+	@cd tests/stress && bash run_stress_tests.sh
+
 test: test-unit test-integration
 	@echo ""
 	@echo "=========================================="
 	@echo "✓ ALL TESTS PASSED!"
+	@echo "=========================================="
+
+test-all: test-unit test-integration test-comprehensive test-stress
+	@echo ""
+	@echo "=========================================="
+	@echo "✓ ALL TESTS PASSED (INCLUDING COMPREHENSIVE AND STRESS)!"
 	@echo "=========================================="
 
 clean:
@@ -113,3 +127,21 @@ example-compact:
 
 example-sentence:
 	@cd examples && ./demo_sentence_encoding.sh
+
+# Python bindings
+python:
+	@echo "Building Python bindings..."
+	@echo "Make sure pybind11 is installed: pip install pybind11"
+	pip install .
+
+python-install:
+	@echo "Installing Python package..."
+	pip install .
+
+python-test: python-install
+	@echo "Testing Python bindings..."
+	@python3 python/example_usage.py
+
+python-dev:
+	@echo "Installing in development mode..."
+	pip install -e .

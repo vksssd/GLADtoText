@@ -1,0 +1,114 @@
+__customer_support I need hlep with my acount
+__customer_support Can someone assist me plese
+__customer_support Having trouble accessing my profile
+__customer_support Need support urgently
+__customer_support Customer service required
+__product_inquiry What are the prodcut specifications
+__product_inquiry Tell me about this item
+__product_inquiry Is this prodcut available
+__product_inquiry What features does it have
+__product_inquiry Product information needed
+__order_status Where is my oder
+__order_status Track my shipment
+__order_status Order status update
+__order_status When will it arrive
+__order_status Has my oder shipped
+__payment_issue dont wont Payment failed
+__payment_issue Credit card cant declined hasnt
+__payment_issue isnt neither Transaction error occurred
+__payment_issue dont wont Billing problem
+__payment_issue nothing Payment neither not processing
+__return_refund I wasnt want hasnt to return this
+__return_refund wont Request a refund didnt
+__return_refund Return policy information not didnt
+__return_refund How do I send not this back isnt
+__return_refund Refund my purchase didnt no
+__account_management Change cannot my password isnt
+__account_management Update account didnt nothing information
+__account_management Delete havent my account dont
+__account_management nothing never Modify profile settings
+__account_management Account security settings no cannot
+__technical_issue Website not
+__technical_issue App keeps
+__technical_issue Error message
+__technical_issue Cannot login
+__technical_issue Page not
+__shipping_delivery Shipping options
+__shipping_delivery Delivery time
+__shipping_delivery Express shipping
+__shipping_delivery International delivery
+__shipping_delivery Shipping address
+__product_complaint Product is
+__product_complaint Item arrived
+__product_complaint Not as
+__product_complaint Poor quality
+__product_complaint Disappointed with
+__feedback_review Great product love it and I would appreciate your help and I need this resolved quickly as soon as possible please
+__feedback_review Excellent service because this is very important to me because this is very important to me since I have been waiting for a while
+__feedback_review Very satisfied customer since I have been waiting for a while since I have been waiting for a while since I have been waiting for a while
+__feedback_review Highly recommend and I need this resolved quickly as soon as possible please because this is very important to me
+__feedback_review Amazing experience as soon as possible please since I have been waiting for a while and I need this resolved quickly
+__pricing_discount Is there a discount available since I have been waiting for a while as soon as possible please as soon as possible please
+__pricing_discount Price match request as soon as possible please and I need this resolved quickly as soon as possible please
+__pricing_discount Coupon code needed and I would appreciate your help as soon as possible please since I have been waiting for a while
+__pricing_discount Sale information as soon as possible please because this is very important to me since I have been waiting for a while
+__pricing_discount Promotional offer since I have been waiting for a while as soon as possible please and I need this resolved quickly
+__general_inquiry Business hours information and I need this resolved quickly as soon as possible please as soon as possible please
+__general_inquiry Store location as soon as possible please and I need this resolved quickly since I have been waiting for a while
+__general_inquiry Contact information and I would appreciate your help and I would appreciate your help and I would appreciate your help
+__general_inquiry Company policy as soon as possible please as soon as possible please since I have been waiting for a while
+__general_inquiry General question since I have been waiting for a while since I have been waiting for a while and I need this resolved quickly
+__customer_support I NEED HELP WITH MY ACCOUNT
+__customer_support CAN SOMEONE ASSIST ME PLEASE
+__customer_support HAVING TROUBLE ACCESSING MY PROFILE
+__product_inquiry WHAT ARE THE PRODUCT SPECIFICATIONS
+__product_inquiry TELL ME ABOUT THIS ITEM
+__product_inquiry IS THIS PRODUCT AVAILABLE
+__order_status WHERE IS MY ORDER
+__order_status TRACK MY SHIPMENT
+__order_status ORDER STATUS UPDATE
+__payment_issue payment failed
+__payment_issue credit card declined
+__payment_issue transaction error occurred
+__return_refund i want to return this
+__return_refund request a refund
+__return_refund return policy information
+__account_management change my password
+__account_management update account information
+__account_management delete my account
+__technical_issue wEbSiTe nOt lOaDiNg
+__technical_issue aPp kEePs cRaShInG
+__technical_issue eRrOr mEsSaGe aPpEaRiNg
+__shipping_delivery sHiPpInG OpTiOnS AvAiLaBlE
+__shipping_delivery dElIvErY TiMe eStImAtE
+__shipping_delivery eXpReSs sHiPpInG CoSt
+__product_complaint pRoDuCt iS DeFeCtIvE
+__product_complaint iTeM ArRiVeD DaMaGeD
+__product_complaint nOt aS DeScRiBeD
+__feedback_review Great Great Great product love it
+__feedback_review Excellent Excellent Excellent service
+__feedback_review Very Very Very satisfied customer
+__pricing_discount Is Is Is there a discount available
+__pricing_discount Price Price Price match request
+__pricing_discount Coupon Coupon Coupon code needed
+__general_inquiry Business Business Business hours information
+__general_inquiry Store Store Store location
+__general_inquiry Contact Contact Contact information
+__customer_support I need help with my account 12345 !@#$%
+__customer_support Can someone assist me please 12345 !@#$%
+__product_inquiry What are the product specifications 12345 !@#$%
+__product_inquiry Tell me about this item 12345 !@#$%
+__order_status Where is my order 12345 !@#$%
+__order_status Track my shipment 12345 !@#$%
+__payment_issue Payment failed 12345 !@#$%
+__payment_issue Credit card declined 12345 !@#$%
+__customer_support help
+__customer_support please
+__product_inquiry help
+__product_inquiry please
+__order_status help
+__order_status please
+__payment_issue help
+__payment_issue please
+__return_refund help
+__return_refund please
